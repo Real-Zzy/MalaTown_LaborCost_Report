@@ -1,44 +1,51 @@
 #!/usr/bin/env node
 /**
  * Generate manifest.json for reports portal
- * Scans the reports/ directory for HTML files and creates a manifest
+ * Scans the report/ directory for HTML files in subdirectories and creates a manifest
  */
 
 const fs = require('fs');
 const path = require('path');
 
-const REPORTS_DIR = path.join(__dirname, '..', 'reports');
+const REPORTS_DIR = path.join(__dirname, '..', 'report');
 const MANIFEST_FILE = path.join(__dirname, '..', 'manifest.json');
 
-// Ensure reports directory exists
-if (!fs.existsSync(REPORTS_DIR)) {
-    console.log('Creating reports directory...');
-    fs.mkdirSync(REPORTS_DIR, { recursive: true });
-}
-
-// Scan for HTML files
+// Scan for HTML files in report/ subdirectories
 function scanReports() {
     const files = [];
     
     if (!fs.existsSync(REPORTS_DIR)) {
-        console.log('Reports directory does not exist. Creating...');
-        fs.mkdirSync(REPORTS_DIR, { recursive: true });
+        console.log('Report directory does not exist.');
         return files;
     }
     
+    // Read all items in report directory
     const items = fs.readdirSync(REPORTS_DIR, { withFileTypes: true });
     
     for (const item of items) {
-        if (item.isFile() && item.name.endsWith('.html')) {
-            const filePath = path.join(REPORTS_DIR, item.name);
-            const stats = fs.statSync(filePath);
+        // Only process subdirectories
+        if (item.isDirectory()) {
+            const subDirPath = path.join(REPORTS_DIR, item.name);
+            const subItems = fs.readdirSync(subDirPath, { withFileTypes: true });
             
-            files.push({
-                name: item.name,
-                path: `reports/${item.name}`,
-                size: stats.size,
-                modified: stats.mtime.toISOString()
-            });
+            // Look for HTML files in this subdirectory
+            for (const subItem of subItems) {
+                if (subItem.isFile() && subItem.name.endsWith('.html')) {
+                    const filePath = path.join(subDirPath, subItem.name);
+                    const stats = fs.statSync(filePath);
+                    
+                    // Generate path relative to root (report/store_name/file.html)
+                    const relativePath = `report/${item.name}/${subItem.name}`;
+                    
+                    files.push({
+                        name: subItem.name,
+                        path: relativePath,
+                        store: item.name, // Store the store name for reference
+                        size: stats.size,
+                        modified: stats.mtime.toISOString()
+                    });
+                }
+            }
         }
     }
     
@@ -50,7 +57,7 @@ function scanReports() {
 
 // Generate manifest
 function generateManifest() {
-    console.log('Scanning reports directory...');
+    console.log('Scanning report/ directory...');
     const files = scanReports();
     
     const manifest = {
@@ -64,7 +71,7 @@ function generateManifest() {
     console.log(`✓ Generated manifest.json with ${files.length} report(s)`);
     console.log(`  Reports found:`);
     files.forEach(file => {
-        console.log(`    - ${file.name}`);
+        console.log(`    - ${file.path}`);
     });
 }
 
