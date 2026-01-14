@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>MP门店人工效率分析报告</title>
     <style>
         body {
@@ -22,6 +25,28 @@
             margin-bottom: 30px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .header h1 {
             margin: 0;
@@ -225,7 +250,7 @@
                 // Wait for Chart.js to be ready, then update
                 function initializeCharts() {
                     if (typeof Chart !== 'undefined') {
-                        updateDateRange();
+                updateDateRange();
                     } else {
                         setTimeout(initializeCharts, 100);
                     }
@@ -249,24 +274,6 @@
             
             // Update charts for the active tab with current filtered data
             updateCharts(currentFilteredData.length > 0 ? currentFilteredData : allData);
-        }
-        
-        function filterTable() {
-            var filter = document.getElementById('periodFilter').value;
-            var table = document.getElementById('periodTable');
-            var rows = table.getElementsByTagName('tr');
-            
-            // Skip header row (index 0)
-            for (var i = 1; i < rows.length; i++) {
-                var row = rows[i];
-                var period = row.getAttribute('data-period');
-                
-                if (filter === 'all' || period === filter) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            }
         }
         
         function updateDateRange() {
@@ -295,8 +302,6 @@
             updateSummaryMetrics(filteredData);
             updateKeyMetrics(filteredData);
             updatePeriodTable(filteredData);
-            updateMonthlySummary(filteredData);
-            updateInsights(filteredData);
             updateCharts(filteredData);
         }
         
@@ -407,151 +412,6 @@
                 `;
                 tbody.appendChild(tr);
             }
-        }
-        
-        function updateMonthlySummary(data) {
-            if (data.length === 0) return;
-            
-            // Group by month
-            var monthlyData = {};
-            data.forEach(function(item) {
-                var month = item.start_date.substring(0, 7); // YYYY-MM
-                if (!monthlyData[month]) {
-                    monthlyData[month] = {
-                        net_sales: 0,
-                        total_labor_cost: 0,
-                        total_Labor_hour: 0,
-                        OT_hour: 0,
-                        HC: []
-                    };
-                }
-                monthlyData[month].net_sales += item.net_sales || 0;
-                monthlyData[month].total_labor_cost += item.total_labor_cost || 0;
-                monthlyData[month].total_Labor_hour += item.total_Labor_hour || 0;
-                monthlyData[month].OT_hour += item.OT_hour || 0;
-                if (item.HC) monthlyData[month].HC.push(item.HC);
-            });
-            
-            var tbody = document.getElementById('monthlyTableBody');
-            if (!tbody) return;
-            
-            tbody.innerHTML = '';
-            
-            var months = Object.keys(monthlyData).sort();
-            months.forEach(function(month) {
-                var monthData = monthlyData[month];
-                var laborCostPct = monthData.net_sales > 0 ? (monthData.total_labor_cost / monthData.net_sales * 100) : 0;
-                var splh = monthData.total_Labor_hour > 0 ? (monthData.net_sales / monthData.total_Labor_hour) : 0;
-                var avgHC = monthData.HC.length > 0 ? (monthData.HC.reduce((a, b) => a + b, 0) / monthData.HC.length) : 0;
-                
-                var monthDisplay = month.replace(/-/, '年').replace(/-/, '月') + '月';
-                
-                var tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${monthDisplay}</td>
-                    <td>$${monthData.net_sales.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                    <td>$${monthData.total_labor_cost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                    <td>${laborCostPct.toFixed(2)}%</td>
-                    <td>$${splh.toFixed(2)}</td>
-                    <td>${monthData.total_Labor_hour.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                    <td>${monthData.OT_hour.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                    <td>${avgHC.toFixed(1)}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-        
-        function updateInsights(data) {
-            if (data.length === 0) return;
-            
-            var laborCostPcts = data.map(item => item.labor_cost_pct || 0);
-            var bestIdx = laborCostPcts.indexOf(Math.min(...laborCostPcts));
-            var worstIdx = laborCostPcts.indexOf(Math.max(...laborCostPcts));
-            var bestPeriod = data[bestIdx];
-            var worstPeriod = data[worstIdx];
-            
-            var netSales = data.map(item => item.net_sales || 0);
-            var laborCosts = data.map(item => item.total_labor_cost || 0);
-            var correlation = calculateCorrelation(netSales, laborCosts);
-            
-            var firstHalf = data.slice(0, Math.floor(data.length / 2));
-            var secondHalf = data.slice(Math.floor(data.length / 2));
-            var firstHalfAvg = firstHalf.reduce((sum, item) => sum + (item.labor_cost_pct || 0), 0) / firstHalf.length;
-            var secondHalfAvg = secondHalf.reduce((sum, item) => sum + (item.labor_cost_pct || 0), 0) / secondHalf.length;
-            var trend = secondHalfAvg < firstHalfAvg ? '改善' : '下降';
-            
-            var avgOvertimePct = data.reduce((sum, item) => sum + (item.overtime_pct || 0), 0) / data.length;
-            
-            // Update insights section
-            var bestPeriodEl = document.getElementById('bestPeriod');
-            var worstPeriodEl = document.getElementById('worstPeriod');
-            var correlationEl = document.getElementById('correlation');
-            var trendEl = document.getElementById('trend');
-            var overtimeEl = document.getElementById('overtime');
-            
-            if (bestPeriodEl && bestPeriod) {
-                bestPeriodEl.innerHTML = `
-                    <h3>1. 最佳表现时间段：${bestPeriod.Period}</h3>
-                    <ul>
-                        <li>人工成本占比：${bestPeriod.labor_cost_pct.toFixed(2)}%</li>
-                        <li>每小时销售额：$${bestPeriod.sales_per_labor_hour.toFixed(2)}</li>
-                        <li>关键因素：员工数量 ${bestPeriod.HC.toFixed(0)} 人，加班占比 ${bestPeriod.overtime_pct.toFixed(2)}%</li>
-                    </ul>
-                `;
-            }
-            
-            if (worstPeriodEl && worstPeriod) {
-                worstPeriodEl.innerHTML = `
-                    <h3>2. 最差表现时间段：${worstPeriod.Period}</h3>
-                    <ul>
-                        <li>人工成本占比：${worstPeriod.labor_cost_pct.toFixed(2)}%</li>
-                        <li>每小时销售额：$${worstPeriod.sales_per_labor_hour.toFixed(2)}</li>
-                        <li>关键因素：员工数量 ${worstPeriod.HC.toFixed(0)} 人，加班占比 ${worstPeriod.overtime_pct.toFixed(2)}%</li>
-                    </ul>
-                `;
-            }
-            
-            if (correlationEl) {
-                var correlationText = correlation > 0.7 ? '强正相关 - 人工成本与销售额呈良好比例关系' :
-                                     correlation > 0.4 ? '中等正相关 - 人工成本与销售额有一定关联' :
-                                     '弱相关 - 存在显著效率提升空间';
-                correlationEl.innerHTML = `
-                    <h3>3. 销售额-人工成本相关性：${correlation.toFixed(3)}</h3>
-                    <p>${correlationText}</p>
-                `;
-            }
-            
-            if (trendEl) {
-                trendEl.innerHTML = `
-                    <h3>5. 趋势分析：人工效率${trend}</h3>
-                    <p>前半段平均：${firstHalfAvg.toFixed(2)}%</p>
-                    <p>后半段平均：${secondHalfAvg.toFixed(2)}%</p>
-                `;
-            }
-            
-            if (overtimeEl) {
-                var overtimeText = avgOvertimePct > 20 ? 
-                    '平均加班工时占比为 ' + avgOvertimePct.toFixed(2) + '%，建议：审查排班以减少加班成本' :
-                    '平均加班工时占比为 ' + avgOvertimePct.toFixed(2) + '% - 在可接受范围内';
-                overtimeEl.innerHTML = `
-                    <h3>4. 加班工时状态</h3>
-                    <p>${overtimeText}</p>
-                `;
-            }
-        }
-        
-        function calculateCorrelation(x, y) {
-            var n = x.length;
-            var sumX = x.reduce((a, b) => a + b, 0);
-            var sumY = y.reduce((a, b) => a + b, 0);
-            var sumXY = x.reduce((sum, xi, i) => sum + xi * y[i], 0);
-            var sumX2 = x.reduce((sum, xi) => sum + xi * xi, 0);
-            var sumY2 = y.reduce((sum, yi) => sum + yi * yi, 0);
-            
-            var numerator = n * sumXY - sumX * sumY;
-            var denominator = Math.sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY));
-            
-            return denominator === 0 ? 0 : numerator / denominator;
         }
         
         function updateCharts(data) {
@@ -955,6 +815,7 @@
 </head>
 <body>
     <div class="header">
+        <a href="../index.html" class="back-button">← 返回主界面</a>
         <h1>MP门店人工效率分析报告</h1>
         <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <label for="startDate" style="font-size: 1.1em;">分析期间：</label>
@@ -1016,7 +877,7 @@
             <button id="confirmDateBtn" onclick="updateDateRange()" class="confirm-btn" style="margin-left: 10px;">确认</button>
             <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2024年12月30日 - 2025年11月17日</span>
         </div>
-        <p>报告生成时间：2026年01月12日</p>
+        <p>报告生成时间：2026年01月13日</p>
     </div>
     
     <!-- Embed all data as JSON for JavaScript filtering -->
@@ -1934,37 +1795,6 @@
 
     <div class="section">
         <h2>按时间段详细分析</h2>
-        <div style="margin-bottom: 20px;">
-            <label for="periodFilter" style="font-weight: bold; margin-right: 10px;">按Payroll筛选时间段:</label>
-            <select id="periodFilter" onchange="filterTable()" style="padding: 8px 15px; font-size: 14px; border: 2px solid #667eea; border-radius: 5px; cursor: pointer;">
-                <option value="all">全部时间段</option>
-                <option value="12/30-1/12">12/30-1/12</option>
-                <option value="1/13-1/26">1/13-1/26</option>
-                <option value="1/27-2/9">1/27-2/9</option>
-                <option value="2/10-2/23">2/10-2/23</option>
-                <option value="2/24-3/9">2/24-3/9</option>
-                <option value="3/10-3/23">3/10-3/23</option>
-                <option value="3/24-4/6">3/24-4/6</option>
-                <option value="4/7-4/20">4/7-4/20</option>
-                <option value="4/21-5/4">4/21-5/4</option>
-                <option value="5/5-5/18">5/5-5/18</option>
-                <option value="5/19-6/1">5/19-6/1</option>
-                <option value="6/2-6/15">6/2-6/15</option>
-                <option value="6/16-6/29">6/16-6/29</option>
-                <option value="6/30-7/13">6/30-7/13</option>
-                <option value="7/14-7/27">7/14-7/27</option>
-                <option value="7/28-8/10">7/28-8/10</option>
-                <option value="8/11-8/24">8/11-8/24</option>
-                <option value="8/25-9/7">8/25-9/7</option>
-                <option value="9/8-9/21">9/8-9/21</option>
-                <option value="9/22-10/5">9/22-10/5</option>
-                <option value="10/6-10/19">10/6-10/19</option>
-                <option value="10/20-11/02">10/20-11/02</option>
-                <option value="11/03-11/16">11/03-11/16</option>
-                <option value="11/17-11/30">11/17-11/30</option>
-            
-    </select>
-        </div>
         <table id="periodTable">
             <thead>
                 <tr>
@@ -1983,328 +1813,6 @@
             </thead>
             <tbody id="periodTableBody">
 
-            <tr data-period="12/30-1/12">
-                <td>12/30-1/12</td>
-                <td>$179,656.91</td>
-                <td>$40,991.05</td>
-                <td>22.82%</td>
-                <td>$124.79</td>
-                <td>1,439.70</td>
-                <td>269.44</td>
-                <td>18.72%</td>
-                <td>27</td>
-                <td style="color: #333; font-weight: bold;">-</td>
-                <td style="color: #333; font-weight: bold;">-</td>
-            </tr>
-
-            <tr data-period="1/13-1/26">
-                <td>1/13-1/26</td>
-                <td>$175,801.10</td>
-                <td>$40,266.42</td>
-                <td>22.90%</td>
-                <td>$119.73</td>
-                <td>1,468.35</td>
-                <td>253.53</td>
-                <td>17.27%</td>
-                <td>28</td>
-                <td style="color: #27ae60; font-weight: bold;">-5.90%</td>
-                <td style="color: #27ae60; font-weight: bold;">-1.77%</td>
-            </tr>
-
-            <tr data-period="1/27-2/9">
-                <td>1/27-2/9</td>
-                <td>$163,156.95</td>
-                <td>$32,189.21</td>
-                <td>19.73%</td>
-                <td>$115.15</td>
-                <td>1,416.86</td>
-                <td>153.46</td>
-                <td>10.83%</td>
-                <td>30</td>
-                <td style="color: #27ae60; font-weight: bold;">-39.47%</td>
-                <td style="color: #27ae60; font-weight: bold;">-20.06%</td>
-            </tr>
-
-            <tr data-period="2/10-2/23">
-                <td>2/10-2/23</td>
-                <td>$186,889.03</td>
-                <td>$35,157.40</td>
-                <td>18.81%</td>
-                <td>$119.05</td>
-                <td>1,569.89</td>
-                <td>177.30</td>
-                <td>11.29%</td>
-                <td>21</td>
-                <td style="color: #e74c3c; font-weight: bold;">+15.53%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+9.22%</td>
-            </tr>
-
-            <tr data-period="2/24-3/9">
-                <td>2/24-3/9</td>
-                <td>$191,945.62</td>
-                <td>$39,029.26</td>
-                <td>20.33%</td>
-                <td>$137.84</td>
-                <td>1,392.49</td>
-                <td>34.04</td>
-                <td>2.44%</td>
-                <td>24</td>
-                <td style="color: #27ae60; font-weight: bold;">-80.80%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+11.01%</td>
-            </tr>
-
-            <tr data-period="3/10-3/23">
-                <td>3/10-3/23</td>
-                <td>$208,651.65</td>
-                <td>$42,833.30</td>
-                <td>20.53%</td>
-                <td>$151.21</td>
-                <td>1,379.88</td>
-                <td>22.74</td>
-                <td>1.65%</td>
-                <td>30</td>
-                <td style="color: #27ae60; font-weight: bold;">-33.20%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+9.75%</td>
-            </tr>
-
-            <tr data-period="3/24-4/6">
-                <td>3/24-4/6</td>
-                <td>$203,177.89</td>
-                <td>$42,281.16</td>
-                <td>20.81%</td>
-                <td>$137.40</td>
-                <td>1,478.78</td>
-                <td>8.60</td>
-                <td>0.58%</td>
-                <td>20</td>
-                <td style="color: #27ae60; font-weight: bold;">-62.18%</td>
-                <td style="color: #27ae60; font-weight: bold;">-1.29%</td>
-            </tr>
-
-            <tr data-period="4/7-4/20">
-                <td>4/7-4/20</td>
-                <td>$176,946.20</td>
-                <td>$42,558.14</td>
-                <td>24.05%</td>
-                <td>$121.35</td>
-                <td>1,458.19</td>
-                <td>36.97</td>
-                <td>2.54%</td>
-                <td>22</td>
-                <td style="color: #e74c3c; font-weight: bold;">+329.88%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+0.66%</td>
-            </tr>
-
-            <tr data-period="4/21-5/4">
-                <td>4/21-5/4</td>
-                <td>$177,351.76</td>
-                <td>$40,295.62</td>
-                <td>22.72%</td>
-                <td>$122.46</td>
-                <td>1,448.28</td>
-                <td>35.89</td>
-                <td>2.48%</td>
-                <td>19</td>
-                <td style="color: #27ae60; font-weight: bold;">-2.92%</td>
-                <td style="color: #27ae60; font-weight: bold;">-5.32%</td>
-            </tr>
-
-            <tr data-period="5/5-5/18">
-                <td>5/5-5/18</td>
-                <td>$175,125.89</td>
-                <td>$40,194.33</td>
-                <td>22.95%</td>
-                <td>$121.62</td>
-                <td>1,439.99</td>
-                <td>26.39</td>
-                <td>1.83%</td>
-                <td>19</td>
-                <td style="color: #27ae60; font-weight: bold;">-26.47%</td>
-                <td style="color: #27ae60; font-weight: bold;">-0.25%</td>
-            </tr>
-
-            <tr data-period="5/19-6/1">
-                <td>5/19-6/1</td>
-                <td>$189,559.42</td>
-                <td>$32,969.06</td>
-                <td>17.39%</td>
-                <td>$144.64</td>
-                <td>1,310.54</td>
-                <td>75.56</td>
-                <td>5.77%</td>
-                <td>18</td>
-                <td style="color: #e74c3c; font-weight: bold;">+186.32%</td>
-                <td style="color: #27ae60; font-weight: bold;">-17.98%</td>
-            </tr>
-
-            <tr data-period="6/2-6/15">
-                <td>6/2-6/15</td>
-                <td>$174,396.71</td>
-                <td>$34,169.89</td>
-                <td>19.59%</td>
-                <td>$150.02</td>
-                <td>1,162.50</td>
-                <td>147.00</td>
-                <td>12.65%</td>
-                <td>13</td>
-                <td style="color: #e74c3c; font-weight: bold;">+94.55%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+3.64%</td>
-            </tr>
-
-            <tr data-period="6/16-6/29">
-                <td>6/16-6/29</td>
-                <td>$177,100.75</td>
-                <td>$30,491.57</td>
-                <td>17.22%</td>
-                <td>$159.40</td>
-                <td>1,111.07</td>
-                <td>105.62</td>
-                <td>9.51%</td>
-                <td>14</td>
-                <td style="color: #27ae60; font-weight: bold;">-28.15%</td>
-                <td style="color: #27ae60; font-weight: bold;">-10.76%</td>
-            </tr>
-
-            <tr data-period="6/30-7/13">
-                <td>6/30-7/13</td>
-                <td>$170,513.87</td>
-                <td>$30,299.93</td>
-                <td>17.77%</td>
-                <td>$146.84</td>
-                <td>1,161.20</td>
-                <td>138.99</td>
-                <td>11.97%</td>
-                <td>14</td>
-                <td style="color: #e74c3c; font-weight: bold;">+31.59%</td>
-                <td style="color: #27ae60; font-weight: bold;">-0.63%</td>
-            </tr>
-
-            <tr data-period="7/14-7/27">
-                <td>7/14-7/27</td>
-                <td>$187,690.02</td>
-                <td>$30,143.31</td>
-                <td>16.06%</td>
-                <td>$159.22</td>
-                <td>1,178.82</td>
-                <td>129.45</td>
-                <td>10.98%</td>
-                <td>16</td>
-                <td style="color: #27ae60; font-weight: bold;">-6.86%</td>
-                <td style="color: #27ae60; font-weight: bold;">-0.52%</td>
-            </tr>
-
-            <tr data-period="7/28-8/10">
-                <td>7/28-8/10</td>
-                <td>$177,552.13</td>
-                <td>$23,535.76</td>
-                <td>13.26%</td>
-                <td>$129.62</td>
-                <td>1,369.77</td>
-                <td>188.76</td>
-                <td>13.78%</td>
-                <td>18</td>
-                <td style="color: #e74c3c; font-weight: bold;">+45.82%</td>
-                <td style="color: #27ae60; font-weight: bold;">-21.92%</td>
-            </tr>
-
-            <tr data-period="8/11-8/24">
-                <td>8/11-8/24</td>
-                <td>$180,661.03</td>
-                <td>$40,930.09</td>
-                <td>22.66%</td>
-                <td>$115.12</td>
-                <td>1,569.28</td>
-                <td>412.06</td>
-                <td>26.26%</td>
-                <td>15</td>
-                <td style="color: #e74c3c; font-weight: bold;">+118.30%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+73.91%</td>
-            </tr>
-
-            <tr data-period="8/25-9/7">
-                <td>8/25-9/7</td>
-                <td>$174,037.29</td>
-                <td>$39,919.33</td>
-                <td>22.94%</td>
-                <td>$120.00</td>
-                <td>1,450.35</td>
-                <td>281.97</td>
-                <td>19.44%</td>
-                <td>16</td>
-                <td style="color: #27ae60; font-weight: bold;">-31.57%</td>
-                <td style="color: #27ae60; font-weight: bold;">-2.47%</td>
-            </tr>
-
-            <tr data-period="9/8-9/21">
-                <td>9/8-9/21</td>
-                <td>$177,041.68</td>
-                <td>$41,318.05</td>
-                <td>23.34%</td>
-                <td>$121.83</td>
-                <td>1,453.18</td>
-                <td>326.83</td>
-                <td>22.49%</td>
-                <td>15</td>
-                <td style="color: #e74c3c; font-weight: bold;">+15.91%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+3.50%</td>
-            </tr>
-
-            <tr data-period="9/22-10/5">
-                <td>9/22-10/5</td>
-                <td>$168,739.25</td>
-                <td>$37,914.65</td>
-                <td>22.47%</td>
-                <td>$120.25</td>
-                <td>1,403.20</td>
-                <td>276.88</td>
-                <td>19.73%</td>
-                <td>15</td>
-                <td style="color: #27ae60; font-weight: bold;">-15.28%</td>
-                <td style="color: #27ae60; font-weight: bold;">-8.24%</td>
-            </tr>
-
-            <tr data-period="10/6-10/19">
-                <td>10/6-10/19</td>
-                <td>$178,379.27</td>
-                <td>$37,025.20</td>
-                <td>20.76%</td>
-                <td>$141.13</td>
-                <td>1,263.92</td>
-                <td>284.75</td>
-                <td>22.53%</td>
-                <td>16</td>
-                <td style="color: #e74c3c; font-weight: bold;">+2.84%</td>
-                <td style="color: #27ae60; font-weight: bold;">-2.35%</td>
-            </tr>
-
-            <tr data-period="10/20-11/02">
-                <td>10/20-11/02</td>
-                <td>$177,204.80</td>
-                <td>$48,891.68</td>
-                <td>27.59%</td>
-                <td>$123.29</td>
-                <td>1,437.26</td>
-                <td>469.85</td>
-                <td>32.69%</td>
-                <td>18</td>
-                <td style="color: #e74c3c; font-weight: bold;">+65.00%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+32.05%</td>
-            </tr>
-
-            <tr data-period="11/03-11/16">
-                <td>11/03-11/16</td>
-                <td>$186,346.89</td>
-                <td>$44,503.36</td>
-                <td>23.88%</td>
-                <td>$117.11</td>
-                <td>1,591.22</td>
-                <td>458.98</td>
-                <td>28.84%</td>
-                <td>22</td>
-                <td style="color: #27ae60; font-weight: bold;">-2.31%</td>
-                <td style="color: #27ae60; font-weight: bold;">-8.98%</td>
-            </tr>
-
             <tr data-period="11/17-11/30">
                 <td>11/17-11/30</td>
                 <td>$203,971.44</td>
@@ -2321,199 +1829,6 @@
 
             </tbody>
         </table>
-    </div>
-    
-    <div class="section">
-        <h2>月度汇总</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>月份</th>
-                    <th>净销售额</th>
-                    <th>人工成本</th>
-                    <th>人工成本占比</th>
-                    <th>每小时销售额</th>
-                    <th>总工时</th>
-                    <th>加班工时</th>
-                    <th>平均员工数量</th>
-                </tr>
-            </thead>
-            <tbody id="monthlyTableBody">
-
-            <tr>
-                <td>2024-12</td>
-                <td>$179,656.91</td>
-                <td>$40,991.05</td>
-                <td>22.82%</td>
-                <td>$124.79</td>
-                <td>1,439.70</td>
-                <td>269.44</td>
-                <td>27.0</td>
-            </tr>
-
-            <tr>
-                <td>2025-01</td>
-                <td>$338,958.05</td>
-                <td>$72,455.63</td>
-                <td>21.38%</td>
-                <td>$117.48</td>
-                <td>2,885.21</td>
-                <td>406.99</td>
-                <td>29.0</td>
-            </tr>
-
-            <tr>
-                <td>2025-02</td>
-                <td>$378,834.65</td>
-                <td>$74,186.66</td>
-                <td>19.58%</td>
-                <td>$127.88</td>
-                <td>2,962.38</td>
-                <td>211.34</td>
-                <td>22.5</td>
-            </tr>
-
-            <tr>
-                <td>2025-03</td>
-                <td>$411,829.54</td>
-                <td>$85,114.46</td>
-                <td>20.67%</td>
-                <td>$144.06</td>
-                <td>2,858.66</td>
-                <td>31.34</td>
-                <td>25.0</td>
-            </tr>
-
-            <tr>
-                <td>2025-04</td>
-                <td>$354,297.96</td>
-                <td>$82,853.76</td>
-                <td>23.39%</td>
-                <td>$121.90</td>
-                <td>2,906.47</td>
-                <td>72.86</td>
-                <td>20.5</td>
-            </tr>
-
-            <tr>
-                <td>2025-05</td>
-                <td>$364,685.31</td>
-                <td>$73,163.39</td>
-                <td>20.06%</td>
-                <td>$132.59</td>
-                <td>2,750.53</td>
-                <td>101.95</td>
-                <td>18.5</td>
-            </tr>
-
-            <tr>
-                <td>2025-06</td>
-                <td>$522,011.33</td>
-                <td>$94,961.39</td>
-                <td>18.19%</td>
-                <td>$151.98</td>
-                <td>3,434.77</td>
-                <td>391.61</td>
-                <td>13.7</td>
-            </tr>
-
-            <tr>
-                <td>2025-07</td>
-                <td>$365,242.15</td>
-                <td>$53,679.07</td>
-                <td>14.70%</td>
-                <td>$143.31</td>
-                <td>2,548.59</td>
-                <td>318.21</td>
-                <td>17.0</td>
-            </tr>
-
-            <tr>
-                <td>2025-08</td>
-                <td>$354,698.32</td>
-                <td>$80,849.42</td>
-                <td>22.79%</td>
-                <td>$117.46</td>
-                <td>3,019.63</td>
-                <td>694.03</td>
-                <td>15.5</td>
-            </tr>
-
-            <tr>
-                <td>2025-09</td>
-                <td>$345,780.93</td>
-                <td>$79,232.70</td>
-                <td>22.91%</td>
-                <td>$121.06</td>
-                <td>2,856.38</td>
-                <td>603.71</td>
-                <td>15.0</td>
-            </tr>
-
-            <tr>
-                <td>2025-10</td>
-                <td>$355,584.07</td>
-                <td>$85,916.88</td>
-                <td>24.16%</td>
-                <td>$131.64</td>
-                <td>2,701.18</td>
-                <td>754.60</td>
-                <td>17.0</td>
-            </tr>
-
-            <tr>
-                <td>2025-11</td>
-                <td>$390,318.33</td>
-                <td>$96,615.53</td>
-                <td>24.75%</td>
-                <td>$114.24</td>
-                <td>3,416.59</td>
-                <td>969.87</td>
-                <td>24.0</td>
-            </tr>
-
-            </tbody>
-        </table>
-    </div>
-    
-    <div class="section">
-        <h2>洞察与建议</h2>
-        
-        <div class="highlight" id="bestPeriod">
-            <h3>1. 最佳表现时间段：{best_period['Period']}</h3>
-            <ul>
-                <li>人工成本占比：{best_period['labor_cost_pct']:.2f}%</li>
-                <li>每小时销售额：${best_period['sales_per_labor_hour']:.2f}</li>
-                <li>关键因素：员工数量 {best_period['HC']:.0f} 人，加班占比 {best_period['overtime_pct']:.2f}%</li>
-            </ul>
-        </div>
-        
-        <div class="insight" id="worstPeriod">
-            <h3>2. 最差表现时间段：{worst_period['Period']}</h3>
-            <ul>
-                <li>人工成本占比：{worst_period['labor_cost_pct']:.2f}%</li>
-                <li>每小时销售额：${worst_period['sales_per_labor_hour']:.2f}</li>
-                <li>关键因素：员工数量 {worst_period['HC']:.0f} 人，加班占比 {worst_period['overtime_pct']:.2f}%</li>
-            </ul>
-        </div>
-        
-        <div class="insight" id="correlation">
-            <h3>3. 销售额-人工成本相关性：{correlation:.3f}</h3>
-<p>弱相关 - 存在显著的效率改进机会</p>
-        <div class="insight" id="overtime">
-            <h3>4. 加班工时状况</h3>
-            <p>平均加班工时占比为 13.93%，处于可接受范围内。</p>
-        </div>
-
-        <div class="insight" id="trend">
-            <h3>5. 趋势分析</h3>
-            <p>人工效率趋势：<strong>下降</strong></p>
-            <ul>
-                <li>前半段平均：21.05%</li>
-                <li>后半段平均：21.12%</li>
-            </ul>
-<p><strong>建议：</strong>需要关注效率下降的原因，采取措施改善。</p>
-        </div>
     </div>
     
     <div class="footer">
