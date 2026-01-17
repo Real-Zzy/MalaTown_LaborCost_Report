@@ -358,6 +358,9 @@
             var minSplhPeriod = data[splhs.indexOf(minSplh)];
             var avgOvertimePct = data.reduce((sum, item) => sum + (item.overtime_pct || 0), 0) / data.length;
             var totalOvertime = data.reduce((sum, item) => sum + (item.OT_hour || 0), 0);
+            var totalLaborHours = data.reduce((sum, item) => sum + (item.total_Labor_hour || 0), 0);
+            // Calculate overall OT percentage: total OT hours / total labor hours
+            var overallOtPct = totalLaborHours > 0 ? (totalOvertime / totalLaborHours * 100) : 0;
             var avgHC = data.reduce((sum, item) => sum + (item.HC || 0), 0) / data.length;
             
             // Update key metrics table
@@ -374,7 +377,8 @@
                 if (rows.length > 8) rows[8].cells[1].textContent = '$' + minSplh.toFixed(2) + ' (时间段: ' + (minSplhPeriod ? minSplhPeriod.Period : '') + ')';
                 if (rows.length > 9) rows[9].cells[1].textContent = avgOvertimePct.toFixed(2) + '%';
                 if (rows.length > 10) rows[10].cells[1].textContent = totalOvertime.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' 小时';
-                if (rows.length > 11) rows[11].cells[1].textContent = avgHC.toFixed(1) + ' 人';
+                if (rows.length > 11) rows[11].cells[1].textContent = overallOtPct.toFixed(2) + '%';
+                if (rows.length > 12) rows[12].cells[1].textContent = avgHC.toFixed(1) + ' 人';
             }
         }
         
@@ -1466,6 +1470,10 @@
             <tr>
                 <td>总加班工时</td>
                 <td>198.10 小时</td>
+            </tr>
+            <tr>
+                <td>OT占比</td>
+                <td>3.27%</td>
             </tr>
             <tr>
                 <td>平均员工数量</td>
