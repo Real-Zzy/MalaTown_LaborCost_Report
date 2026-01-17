@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>BOS门店人工效率分析报告</title>
+    <title>BOS门店2025年度人效分析报告</title>
     <style>
         body {
             font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
@@ -825,11 +825,12 @@
 <body>
     <div class="header">
         <a href="/index.html" class="back-button">← 返回主界面</a>
-        <h1>BOS门店人工效率分析报告</h1>
+        <h1>BOS门店2025年度人效分析报告</h1>
         <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <label for="startDate" style="font-size: 1.1em;">分析期间：</label>
             <select id="startDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择开始日期</option>
+                <option value="2024-12-22">2024年12月22日</option>
                 <option value="2025-01-06">2025年01月06日</option>
                 <option value="2025-01-20">2025年01月20日</option>
                 <option value="2025-02-03">2025年02月03日</option>
@@ -853,10 +854,13 @@
                 <option value="2025-10-13">2025年10月13日</option>
                 <option value="2025-10-27">2025年10月27日</option>
                 <option value="2025-11-10">2025年11月10日</option>
+                <option value="2025-11-24">2025年11月24日</option>
+                <option value="2025-12-08">2025年12月08日</option>
             </select>
             <span style="font-size: 1.1em;">至</span>
             <select id="endDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择结束日期</option>
+                <option value="2024-12-22">2024年12月22日</option>
                 <option value="2025-01-06">2025年01月06日</option>
                 <option value="2025-01-20">2025年01月20日</option>
                 <option value="2025-02-03">2025年02月03日</option>
@@ -880,16 +884,55 @@
                 <option value="2025-10-13">2025年10月13日</option>
                 <option value="2025-10-27">2025年10月27日</option>
                 <option value="2025-11-10">2025年11月10日</option>
+                <option value="2025-11-24">2025年11月24日</option>
+                <option value="2025-12-08">2025年12月08日</option>
             </select>
             <button id="confirmDateBtn" onclick="updateDateRange()" class="confirm-btn" style="margin-left: 10px;">确认</button>
-            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2025年01月06日 - 2025年11月10日</span>
+            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2024年12月22日 - 2025年12月08日</span>
         </div>
-        <p>报告生成时间：2026年01月14日</p>
+        <p>报告生成时间：2026年01月17日</p>
     </div>
     
     <!-- Embed all data as JSON for JavaScript filtering -->
     <script type="application/json" id="allData">
 [
+  {
+    "Period": "12/22-1/4",
+    "Tips": 4120.23,
+    "net_sales": 74369.75,
+    "service_fee": null,
+    "total_payroll": 29475.31,
+    "Tips_Distributed": 4301.84,
+    "if_match": 181.61,
+    "LaborCost_no_tips": 25173.47,
+    "labor_cost/net_sales": 0.338490717,
+    "total_Labor_hour": 1105.7,
+    "OT_hour": 49.36,
+    "SPLH": 67.26033282,
+    "HC": 20.0,
+    "Payroll_Dismissal": null,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_Bonus/Extra": null,
+    "Payroll_NewHire": null,
+    "Payroll_NonRegularTotal": null,
+    "Other": null,
+    "BOS_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSales": null,
+    "Unnamed: 23": null,
+    "BOS（Boston）": "加强员工销售效率考核，控制非高峰劳时投入。",
+    "start_date": "2024-12-22T00:00:00",
+    "end_date": "2025-01-04T00:00:00",
+    "MP_LaborCost": 25173.47,
+    "MP_TotalLaborCostExcludingTips": null,
+    "total_labor_cost": 25173.47,
+    "labor_cost_pct": 33.849071699178765,
+    "sales_per_labor_hour": 67.26033282083748,
+    "labor_cost_per_hour": 22.766998281631547,
+    "overtime_pct": 4.464140363570588,
+    "period_midpoint": "2024-12-28T12:00:00"
+  },
   {
     "Period": "1/6-1/19",
     "Tips": 3153.66,
@@ -908,7 +951,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -945,7 +988,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -982,7 +1025,7 @@
     "Payroll_OffCycle": 6216.25,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 6216.25,
     "Other": null,
@@ -1019,7 +1062,7 @@
     "Payroll_OffCycle": 6216.25,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 6216.25,
     "Other": null,
@@ -1056,7 +1099,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1093,7 +1136,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1130,7 +1173,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1167,7 +1210,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1204,7 +1247,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1241,7 +1284,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1278,7 +1321,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1315,7 +1358,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1352,7 +1395,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1389,7 +1432,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1426,7 +1469,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1463,7 +1506,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1500,7 +1543,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1537,7 +1580,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1574,7 +1617,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1611,7 +1654,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": 5023.68,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 5023.68,
     "Other": null,
@@ -1648,7 +1691,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1685,7 +1728,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1722,7 +1765,7 @@
     "Payroll_OffCycle": null,
     "Payroll_NonGusto": null,
     "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
+    "Payroll_Bonus/Extra": null,
     "Payroll_NewHire": null,
     "Payroll_NonRegularTotal": 0.0,
     "Other": null,
@@ -1740,6 +1783,80 @@
     "labor_cost_per_hour": 22.129942492561227,
     "overtime_pct": 11.40993362325475,
     "period_midpoint": "2025-11-16T12:00:00"
+  },
+  {
+    "Period": "11/24-12/07",
+    "Tips": 5189.94,
+    "net_sales": 98470.37,
+    "service_fee": null,
+    "total_payroll": 32656.01,
+    "Tips_Distributed": 5305.68,
+    "if_match": 115.74,
+    "LaborCost_no_tips": 27350.33,
+    "labor_cost/net_sales": 0.277751876,
+    "total_Labor_hour": 1220.66,
+    "OT_hour": 145.45,
+    "SPLH": 80.66977701,
+    "HC": 19.0,
+    "Payroll_Dismissal": null,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_Bonus/Extra": null,
+    "Payroll_NewHire": null,
+    "Payroll_NonRegularTotal": null,
+    "Other": null,
+    "BOS_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSales": null,
+    "Unnamed: 23": null,
+    "BOS（Boston）": null,
+    "start_date": "2025-11-24T00:00:00",
+    "end_date": "2025-12-07T00:00:00",
+    "MP_LaborCost": 27350.33,
+    "MP_TotalLaborCostExcludingTips": null,
+    "total_labor_cost": 27350.33,
+    "labor_cost_pct": 27.775187602118283,
+    "sales_per_labor_hour": 80.66977700588205,
+    "labor_cost_per_hour": 22.40618190159422,
+    "overtime_pct": 11.91568495731817,
+    "period_midpoint": "2025-11-30T12:00:00"
+  },
+  {
+    "Period": "12/08-12/21",
+    "Tips": 5104.38,
+    "net_sales": 101329.79,
+    "service_fee": null,
+    "total_payroll": 35634.82,
+    "Tips_Distributed": 5182.87,
+    "if_match": 78.49,
+    "LaborCost_no_tips": 30451.95,
+    "labor_cost/net_sales": 0.3005231729,
+    "total_Labor_hour": 1342.31,
+    "OT_hour": 209.83,
+    "SPLH": 75.48911205,
+    "HC": 20.0,
+    "Payroll_Dismissal": null,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_Bonus/Extra": 3579.37,
+    "Payroll_NewHire": null,
+    "Payroll_NonRegularTotal": null,
+    "Other": null,
+    "BOS_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSales": null,
+    "Unnamed: 23": null,
+    "BOS（Boston）": null,
+    "start_date": "2025-12-08T00:00:00",
+    "end_date": "2025-12-21T00:00:00",
+    "MP_LaborCost": 30451.95,
+    "MP_TotalLaborCostExcludingTips": null,
+    "total_labor_cost": 30451.95,
+    "labor_cost_pct": 30.0523172899105,
+    "sales_per_labor_hour": 75.48911205310249,
+    "labor_cost_per_hour": 22.68622747353443,
+    "overtime_pct": 15.632007509442678,
+    "period_midpoint": "2025-12-14T12:00:00"
   }
 ]
     </script>
@@ -1749,23 +1866,23 @@
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="label">总净销售额</div>
-                <div class="value">$2,135,929.21</div>
+                <div class="value">$2,410,099.12</div>
             </div>
             <div class="metric-card">
                 <div class="label">总人工成本</div>
-                <div class="value">$602,302.79</div>
+                <div class="value">$685,278.54</div>
             </div>
             <div class="metric-card">
                 <div class="label">平均人工成本占比</div>
-                <div class="value">28.20%</div>
+                <div class="value">28.43%</div>
             </div>
             <div class="metric-card">
                 <div class="label">总人工工时</div>
-                <div class="value">24,958.70</div>
+                <div class="value">28,627.37</div>
             </div>
             <div class="metric-card">
                 <div class="label">平均每小时销售额</div>
-                <div class="value">$86.07</div>
+                <div class="value">$84.73</div>
             </div>
         </div>
     </div>
@@ -1807,11 +1924,11 @@
             </tr>
             <tr>
                 <td>分析时间段数</td>
-                <td>23 个</td>
+                <td>26 个</td>
             </tr>
             <tr>
                 <td>平均人工成本占比</td>
-                <td>28.84%</td>
+                <td>29.04%</td>
             </tr>
             <tr>
                 <td>最低人工成本占比</td>
@@ -1823,11 +1940,11 @@
             </tr>
             <tr>
                 <td>标准差</td>
-                <td>4.05%</td>
+                <td>3.93%</td>
             </tr>
             <tr>
                 <td>平均每小时销售额 (SPLH)</td>
-                <td>$86.07</td>
+                <td>$84.73</td>
             </tr>
             <tr>
                 <td>最佳 SPLH</td>
@@ -1839,15 +1956,15 @@
             </tr>
             <tr>
                 <td>平均加班工时占比</td>
-                <td>7.54%</td>
+                <td>7.96%</td>
             </tr>
             <tr>
                 <td>总加班工时</td>
-                <td>1,758.20 小时</td>
+                <td>2,162.84 小时</td>
             </tr>
             <tr>
                 <td>平均员工数量</td>
-                <td>17.8 人</td>
+                <td>18.0 人</td>
             </tr>
         </table>
     </div>
@@ -1872,18 +1989,18 @@
             </thead>
             <tbody id="periodTableBody">
 
-            <tr data-period="11/10-11/23">
-                <td>11/10-11/23</td>
-                <td>$106,763.88</td>
-                <td>$30,939.43</td>
-                <td>28.98%</td>
-                <td>$76.36</td>
-                <td>1,398.08</td>
-                <td>159.52</td>
-                <td>11.41%</td>
-                <td>19</td>
-                <td style="color: #27ae60; font-weight: bold;">-11.62%</td>
-                <td style="color: #27ae60; font-weight: bold;">-0.32%</td>
+            <tr data-period="12/08-12/21">
+                <td>12/08-12/21</td>
+                <td>$101,329.79</td>
+                <td>$30,451.95</td>
+                <td>30.05%</td>
+                <td>$75.49</td>
+                <td>1,342.31</td>
+                <td>209.83</td>
+                <td>15.63%</td>
+                <td>20</td>
+                <td style="color: #e74c3c; font-weight: bold;">+44.26%</td>
+                <td style="color: #e74c3c; font-weight: bold;">+11.34%</td>
             </tr>
 
             </tbody>

@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>CB门店人工效率分析报告</title>
+    <title>CB门店2025年度人效分析报告</title>
     <style>
         body {
             font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
@@ -825,11 +825,12 @@
 <body>
     <div class="header">
         <a href="/index.html" class="back-button">← 返回主界面</a>
-        <h1>CB门店人工效率分析报告</h1>
+        <h1>CB门店2025年度人效分析报告</h1>
         <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <label for="startDate" style="font-size: 1.1em;">分析期间：</label>
             <select id="startDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择开始日期</option>
+                <option value="2024-12-22">2024年12月22日</option>
                 <option value="2025-01-06">2025年01月06日</option>
                 <option value="2025-01-20">2025年01月20日</option>
                 <option value="2025-02-03">2025年02月03日</option>
@@ -853,10 +854,13 @@
                 <option value="2025-10-13">2025年10月13日</option>
                 <option value="2025-10-27">2025年10月27日</option>
                 <option value="2025-11-10">2025年11月10日</option>
+                <option value="2025-11-24">2025年11月24日</option>
+                <option value="2025-12-08">2025年12月08日</option>
             </select>
             <span style="font-size: 1.1em;">至</span>
             <select id="endDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择结束日期</option>
+                <option value="2024-12-22">2024年12月22日</option>
                 <option value="2025-01-06">2025年01月06日</option>
                 <option value="2025-01-20">2025年01月20日</option>
                 <option value="2025-02-03">2025年02月03日</option>
@@ -880,21 +884,60 @@
                 <option value="2025-10-13">2025年10月13日</option>
                 <option value="2025-10-27">2025年10月27日</option>
                 <option value="2025-11-10">2025年11月10日</option>
+                <option value="2025-11-24">2025年11月24日</option>
+                <option value="2025-12-08">2025年12月08日</option>
             </select>
             <button id="confirmDateBtn" onclick="updateDateRange()" class="confirm-btn" style="margin-left: 10px;">确认</button>
-            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2025年01月06日 - 2025年11月10日</span>
+            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2024年12月22日 - 2025年12月08日</span>
         </div>
-        <p>报告生成时间：2026年01月14日</p>
+        <p>报告生成时间：2026年01月17日</p>
     </div>
     
     <!-- Embed all data as JSON for JavaScript filtering -->
     <script type="application/json" id="allData">
 [
   {
+    "Period": "12/22-1/4",
+    "CU_total_net_sales": 46002.72,
+    "Tips": 1078.71,
+    "Total_Payroll": 19688.0,
+    "Tips_Distributed": 1116.04,
+    "if_match": 37.33,
+    "CU_LaborCost_no_tips": 18571.96,
+    "labor_cost/net_sales": 0.2459439749,
+    "total_Labor_hour": 791.87,
+    "OT_hour": 93.03,
+    "SPLH": 58.09377802,
+    "HC": 10.0,
+    "Payroll_Dismissal": null,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_Bonus": null,
+    "Payroll_NewHire": null,
+    "Payroll_NonRegularTotal": null,
+    "Other": null,
+    "CB_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSales": null,
+    "Unnamed: 22": null,
+    "CB（Columbus）": "建议：",
+    "start_date": "2024-12-22T00:00:00",
+    "end_date": "2025-01-04T00:00:00",
+    "net_sales": 46002.72,
+    "MP_LaborCost": 18571.96,
+    "MP_TotalLaborCostExcludingTips": null,
+    "total_labor_cost": 18571.96,
+    "labor_cost_pct": 40.371438906221194,
+    "sales_per_labor_hour": 58.0937780191193,
+    "labor_cost_per_hour": 23.453294101304508,
+    "overtime_pct": 11.748140477603647,
+    "period_midpoint": "2024-12-28T12:00:00"
+  },
+  {
     "Period": "1/6-1/19",
     "CU_total_net_sales": 55926.7,
     "Tips": 1223.15,
-    "CU_totalLaborcost": 23999.78,
+    "Total_Payroll": 23999.78,
     "Tips_Distributed": 1838.15,
     "if_match": 615.0,
     "CU_LaborCost_no_tips": 22161.63,
@@ -931,7 +974,7 @@
     "Period": "1/20-2/2",
     "CU_total_net_sales": 79001.09,
     "Tips": 1722.98,
-    "CU_totalLaborcost": 24430.87,
+    "Total_Payroll": 24430.87,
     "Tips_Distributed": 1557.98,
     "if_match": -165.0,
     "CU_LaborCost_no_tips": 22872.89,
@@ -968,7 +1011,7 @@
     "Period": "2/3-2/16",
     "CU_total_net_sales": 80687.03,
     "Tips": 1933.64,
-    "CU_totalLaborcost": 21903.73,
+    "Total_Payroll": 21903.73,
     "Tips_Distributed": 1633.64,
     "if_match": -300.0,
     "CU_LaborCost_no_tips": 20270.09,
@@ -1005,7 +1048,7 @@
     "Period": "2/17-3/2",
     "CU_total_net_sales": 82279.09,
     "Tips": 1962.95,
-    "CU_totalLaborcost": 21686.44,
+    "Total_Payroll": 21686.44,
     "Tips_Distributed": 1289.95,
     "if_match": -673.0,
     "CU_LaborCost_no_tips": 20396.49,
@@ -1042,7 +1085,7 @@
     "Period": "3/3-3/16",
     "CU_total_net_sales": 76202.22,
     "Tips": 1975.91,
-    "CU_totalLaborcost": 20049.99,
+    "Total_Payroll": 20049.99,
     "Tips_Distributed": 1512.91,
     "if_match": -463.0,
     "CU_LaborCost_no_tips": 18537.08,
@@ -1079,7 +1122,7 @@
     "Period": "3/17-3/30",
     "CU_total_net_sales": 72517.54,
     "Tips": 1588.69,
-    "CU_totalLaborcost": 21799.33,
+    "Total_Payroll": 21799.33,
     "Tips_Distributed": 1612.69,
     "if_match": 24.0,
     "CU_LaborCost_no_tips": 20186.64,
@@ -1116,7 +1159,7 @@
     "Period": "3/31-4/13",
     "CU_total_net_sales": 87577.92,
     "Tips": 2071.91,
-    "CU_totalLaborcost": 23194.18,
+    "Total_Payroll": 23194.18,
     "Tips_Distributed": 1775.91,
     "if_match": -296.0,
     "CU_LaborCost_no_tips": 21418.27,
@@ -1153,7 +1196,7 @@
     "Period": "4/14-4/27",
     "CU_total_net_sales": 82481.04,
     "Tips": 2040.34,
-    "CU_totalLaborcost": 24208.15,
+    "Total_Payroll": 24208.15,
     "Tips_Distributed": 2082.34,
     "if_match": 42.0,
     "CU_LaborCost_no_tips": 22125.81,
@@ -1190,7 +1233,7 @@
     "Period": "4/28-5/11",
     "CU_total_net_sales": 86959.89,
     "Tips": 2103.44,
-    "CU_totalLaborcost": 23011.27,
+    "Total_Payroll": 23011.27,
     "Tips_Distributed": 2134.44,
     "if_match": 31.0,
     "CU_LaborCost_no_tips": 20876.83,
@@ -1227,7 +1270,7 @@
     "Period": "5/12-5/25",
     "CU_total_net_sales": 66685.18,
     "Tips": 1738.23,
-    "CU_totalLaborcost": 22585.11,
+    "Total_Payroll": 22585.11,
     "Tips_Distributed": 1780.23,
     "if_match": 42.0,
     "CU_LaborCost_no_tips": 20804.88,
@@ -1264,7 +1307,7 @@
     "Period": "5/26-6/8",
     "CU_total_net_sales": 51801.22,
     "Tips": 1503.04,
-    "CU_totalLaborcost": 20771.22,
+    "Total_Payroll": 20771.22,
     "Tips_Distributed": 1524.06,
     "if_match": 21.02,
     "CU_LaborCost_no_tips": 19247.16,
@@ -1301,7 +1344,7 @@
     "Period": "6/9-6/22",
     "CU_total_net_sales": 45051.78,
     "Tips": 1403.0,
-    "CU_totalLaborcost": 19002.95,
+    "Total_Payroll": 19002.95,
     "Tips_Distributed": 1441.0,
     "if_match": 38.0,
     "CU_LaborCost_no_tips": 17561.95,
@@ -1338,7 +1381,7 @@
     "Period": "6/23-7/6",
     "CU_total_net_sales": 44788.03,
     "Tips": 1333.76,
-    "CU_totalLaborcost": 18359.4,
+    "Total_Payroll": 18359.4,
     "Tips_Distributed": 1355.76,
     "if_match": 22.0,
     "CU_LaborCost_no_tips": 17003.64,
@@ -1375,7 +1418,7 @@
     "Period": "7/7-7/20",
     "CU_total_net_sales": 38632.07,
     "Tips": 1107.91,
-    "CU_totalLaborcost": 15806.3,
+    "Total_Payroll": 15806.3,
     "Tips_Distributed": 1127.91,
     "if_match": 20.0,
     "CU_LaborCost_no_tips": 14678.39,
@@ -1412,7 +1455,7 @@
     "Period": "7/21-8/3",
     "CU_total_net_sales": 45026.54,
     "Tips": 1373.18,
-    "CU_totalLaborcost": 18635.19,
+    "Total_Payroll": 18635.19,
     "Tips_Distributed": 1401.18,
     "if_match": 28.0,
     "CU_LaborCost_no_tips": 17234.01,
@@ -1449,7 +1492,7 @@
     "Period": "8/4-8/17",
     "CU_total_net_sales": 43689.16,
     "Tips": 1254.35,
-    "CU_totalLaborcost": 17982.41,
+    "Total_Payroll": 17982.41,
     "Tips_Distributed": 1260.8,
     "if_match": 6.45,
     "CU_LaborCost_no_tips": 16721.61,
@@ -1486,7 +1529,7 @@
     "Period": "8/18-8/31",
     "CU_total_net_sales": 58021.76,
     "Tips": 1596.09,
-    "CU_totalLaborcost": 21039.54,
+    "Total_Payroll": 21039.54,
     "Tips_Distributed": 1606.09,
     "if_match": 10.0,
     "CU_LaborCost_no_tips": 19433.45,
@@ -1523,7 +1566,7 @@
     "Period": "9/1-9/14",
     "CU_total_net_sales": 70296.27,
     "Tips": 1788.55,
-    "CU_totalLaborcost": 25369.13,
+    "Total_Payroll": 25369.13,
     "Tips_Distributed": 1904.11,
     "if_match": 115.56,
     "CU_LaborCost_no_tips": 14679.39,
@@ -1560,7 +1603,7 @@
     "Period": "9/15-9/28",
     "CU_total_net_sales": 66727.62,
     "Tips": 1565.35,
-    "CU_totalLaborcost": 23113.7,
+    "Total_Payroll": 23113.7,
     "Tips_Distributed": 1697.13,
     "if_match": 131.78,
     "CU_LaborCost_no_tips": 21416.57,
@@ -1597,7 +1640,7 @@
     "Period": "9/29-10/12",
     "CU_total_net_sales": 73754.83,
     "Tips": 1726.41,
-    "CU_totalLaborcost": 23597.34,
+    "Total_Payroll": 23597.34,
     "Tips_Distributed": 1742.41,
     "if_match": 16.0,
     "CU_LaborCost_no_tips": 21854.93,
@@ -1634,7 +1677,7 @@
     "Period": "10/13-10/26",
     "CU_total_net_sales": 75512.97,
     "Tips": 1919.27,
-    "CU_totalLaborcost": 26884.0,
+    "Total_Payroll": 26884.0,
     "Tips_Distributed": 2009.93,
     "if_match": 90.66,
     "CU_LaborCost_no_tips": 24874.07,
@@ -1671,7 +1714,7 @@
     "Period": "10/27-11/09",
     "CU_total_net_sales": 74200.96,
     "Tips": 1958.93,
-    "CU_totalLaborcost": 23739.26,
+    "Total_Payroll": 23739.26,
     "Tips_Distributed": 1978.84,
     "if_match": 19.91,
     "CU_LaborCost_no_tips": 21760.42,
@@ -1708,7 +1751,7 @@
     "Period": "11/10-11/23",
     "CU_total_net_sales": 78172.12,
     "Tips": 2148.6,
-    "CU_totalLaborcost": 21672.81,
+    "Total_Payroll": 21672.81,
     "Tips_Distributed": 2171.5,
     "if_match": 22.9,
     "CU_LaborCost_no_tips": 19501.31,
@@ -1740,6 +1783,80 @@
     "labor_cost_per_hour": 30.039039847315163,
     "overtime_pct": 20.682187993197694,
     "period_midpoint": "2025-11-16T12:00:00"
+  },
+  {
+    "Period": "11/24-12/07",
+    "CU_total_net_sales": 72542.63,
+    "Tips": 1771.83,
+    "Total_Payroll": 19960.6,
+    "Tips_Distributed": 1799.08,
+    "if_match": 27.25,
+    "CU_LaborCost_no_tips": 18161.52,
+    "labor_cost/net_sales": 0.2405086173,
+    "total_Labor_hour": 770.7,
+    "OT_hour": 127.76,
+    "SPLH": 94.12563903,
+    "HC": 13.0,
+    "Payroll_Dismissal": 752.04,
+    "Payroll_OffCycle": 1103.56,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_Bonus": 395.41,
+    "Payroll_NewHire": null,
+    "Payroll_NonRegularTotal": 2251.01,
+    "Other": 2016.67,
+    "CB_TotalLaborCostExcludingTips": 22429.2,
+    "TotalLaborCost/NetSales": 0.3091864742,
+    "Unnamed: 22": null,
+    "CB（Columbus）": "门店转化率或流程设计存在问题；",
+    "start_date": "2025-11-24T00:00:00",
+    "end_date": "2025-12-07T00:00:00",
+    "net_sales": 72542.63,
+    "MP_LaborCost": 18161.52,
+    "MP_TotalLaborCostExcludingTips": 22429.2,
+    "total_labor_cost": 22429.2,
+    "labor_cost_pct": 30.918647421523037,
+    "sales_per_labor_hour": 94.12563902945374,
+    "labor_cost_per_hour": 29.102374464772286,
+    "overtime_pct": 16.577137667055922,
+    "period_midpoint": "2025-11-30T12:00:00"
+  },
+  {
+    "Period": "12/08-12/21",
+    "CU_total_net_sales": 75942.2,
+    "Tips": 1863.01,
+    "Total_Payroll": 22329.09,
+    "Tips_Distributed": 1930.53,
+    "if_match": 67.52,
+    "CU_LaborCost_no_tips": 20398.56,
+    "labor_cost/net_sales": 0.270133197,
+    "total_Labor_hour": 868.01,
+    "OT_hour": 169.83,
+    "SPLH": 87.49000588,
+    "HC": 12.0,
+    "Payroll_Dismissal": null,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_Bonus": null,
+    "Payroll_NewHire": null,
+    "Payroll_NonRegularTotal": null,
+    "Other": null,
+    "CB_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSales": null,
+    "Unnamed: 22": null,
+    "CB（Columbus）": null,
+    "start_date": "2025-12-08T00:00:00",
+    "end_date": "2025-12-21T00:00:00",
+    "net_sales": 75942.2,
+    "MP_LaborCost": 20398.56,
+    "MP_TotalLaborCostExcludingTips": null,
+    "total_labor_cost": 20398.56,
+    "labor_cost_pct": 26.860638748943277,
+    "sales_per_labor_hour": 87.49000587550834,
+    "labor_cost_per_hour": 23.500374419649546,
+    "overtime_pct": 19.565442794437853,
+    "period_midpoint": "2025-12-14T12:00:00"
   }
 ]
     </script>
@@ -1749,23 +1866,23 @@
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="label">总净销售额</div>
-                <div class="value">$1,535,993.03</div>
+                <div class="value">$1,730,480.58</div>
             </div>
             <div class="metric-card">
                 <div class="label">总人工成本</div>
-                <div class="value">$480,903.03</div>
+                <div class="value">$542,302.75</div>
             </div>
             <div class="metric-card">
                 <div class="label">平均人工成本占比</div>
-                <div class="value">31.31%</div>
+                <div class="value">31.34%</div>
             </div>
             <div class="metric-card">
                 <div class="label">总人工工时</div>
-                <div class="value">18,846.64</div>
+                <div class="value">21,277.22</div>
             </div>
             <div class="metric-card">
                 <div class="label">平均每小时销售额</div>
-                <div class="value">$81.34</div>
+                <div class="value">$81.18</div>
             </div>
         </div>
     </div>
@@ -1807,11 +1924,11 @@
             </tr>
             <tr>
                 <td>分析时间段数</td>
-                <td>23 个</td>
+                <td>26 个</td>
             </tr>
             <tr>
                 <td>平均人工成本占比</td>
-                <td>32.56%</td>
+                <td>32.58%</td>
             </tr>
             <tr>
                 <td>最低人工成本占比</td>
@@ -1823,11 +1940,11 @@
             </tr>
             <tr>
                 <td>标准差</td>
-                <td>6.45%</td>
+                <td>6.36%</td>
             </tr>
             <tr>
                 <td>平均每小时销售额 (SPLH)</td>
-                <td>$81.34</td>
+                <td>$81.18</td>
             </tr>
             <tr>
                 <td>最佳 SPLH</td>
@@ -1835,19 +1952,19 @@
             </tr>
             <tr>
                 <td>最差 SPLH</td>
-                <td>$63.36 (时间段: 1/6-1/19)</td>
+                <td>$58.09 (时间段: 12/22-1/4)</td>
             </tr>
             <tr>
                 <td>平均加班工时占比</td>
-                <td>9.25%</td>
+                <td>10.03%</td>
             </tr>
             <tr>
                 <td>总加班工时</td>
-                <td>1,831.59 小时</td>
+                <td>2,222.21 小时</td>
             </tr>
             <tr>
                 <td>平均员工数量</td>
-                <td>13.7 人</td>
+                <td>13.5 人</td>
             </tr>
         </table>
     </div>
@@ -1872,18 +1989,18 @@
             </thead>
             <tbody id="periodTableBody">
 
-            <tr data-period="11/10-11/23">
-                <td>11/10-11/23</td>
-                <td>$78,172.12</td>
-                <td>$24,553.01</td>
-                <td>31.41%</td>
-                <td>$95.64</td>
-                <td>817.37</td>
-                <td>169.05</td>
-                <td>20.68%</td>
-                <td>9</td>
-                <td style="color: #27ae60; font-weight: bold;">-15.64%</td>
-                <td style="color: #27ae60; font-weight: bold;">-0.93%</td>
+            <tr data-period="12/08-12/21">
+                <td>12/08-12/21</td>
+                <td>$75,942.20</td>
+                <td>$20,398.56</td>
+                <td>26.86%</td>
+                <td>$87.49</td>
+                <td>868.01</td>
+                <td>169.83</td>
+                <td>19.57%</td>
+                <td>12</td>
+                <td style="color: #e74c3c; font-weight: bold;">+32.93%</td>
+                <td style="color: #27ae60; font-weight: bold;">-9.05%</td>
             </tr>
 
             </tbody>

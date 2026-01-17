@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>PL门店人工效率分析报告</title>
+    <title>PL门店2025年度人效分析报告</title>
     <style>
         body {
             font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
@@ -825,11 +825,12 @@
 <body>
     <div class="header">
         <a href="/index.html" class="back-button">← 返回主界面</a>
-        <h1>PL门店人工效率分析报告</h1>
+        <h1>PL门店2025年度人效分析报告</h1>
         <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <label for="startDate" style="font-size: 1.1em;">分析期间：</label>
             <select id="startDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择开始日期</option>
+                <option value="2024-12-29">2024年12月29日</option>
                 <option value="2025-07-28">2025年07月28日</option>
                 <option value="2025-08-11">2025年08月11日</option>
                 <option value="2025-08-25">2025年08月25日</option>
@@ -839,10 +840,13 @@
                 <option value="2025-10-20">2025年10月20日</option>
                 <option value="2025-11-03">2025年11月03日</option>
                 <option value="2025-11-17">2025年11月17日</option>
+                <option value="2025-12-01">2025年12月01日</option>
+                <option value="2025-12-15">2025年12月15日</option>
             </select>
             <span style="font-size: 1.1em;">至</span>
             <select id="endDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择结束日期</option>
+                <option value="2024-12-29">2024年12月29日</option>
                 <option value="2025-07-28">2025年07月28日</option>
                 <option value="2025-08-11">2025年08月11日</option>
                 <option value="2025-08-25">2025年08月25日</option>
@@ -852,16 +856,54 @@
                 <option value="2025-10-20">2025年10月20日</option>
                 <option value="2025-11-03">2025年11月03日</option>
                 <option value="2025-11-17">2025年11月17日</option>
+                <option value="2025-12-01">2025年12月01日</option>
+                <option value="2025-12-15">2025年12月15日</option>
             </select>
             <button id="confirmDateBtn" onclick="updateDateRange()" class="confirm-btn" style="margin-left: 10px;">确认</button>
-            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2025年07月28日 - 2025年11月17日</span>
+            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2024年12月29日 - 2025年12月15日</span>
         </div>
-        <p>报告生成时间：2026年01月14日</p>
+        <p>报告生成时间：2026年01月17日</p>
     </div>
     
     <!-- Embed all data as JSON for JavaScript filtering -->
     <script type="application/json" id="allData">
 [
+  {
+    "Period": "12/29-1/11",
+    "Tips": null,
+    "service_fee": null,
+    "UC_net_sales": 40357.53,
+    "UC_totalPayroll": 17077.99,
+    "Tips_Distributed": 4072.75,
+    "if_match": null,
+    "labor_cost": null,
+    "labor_cost/net_sales": null,
+    "total_Labor_hour": 494.06,
+    "OT_hour": 9.47,
+    "SPLH": 81.68548354,
+    "HC": 8.0,
+    "Payroll_Dismissal": null,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_NonRegularTotal": null,
+    "Other": null,
+    "PL_TotalLaborCostExcludingTips": 0.0,
+    "TotalLaborCost/NetSales": null,
+    "Unnamed: 21": null,
+    "PL(PLEASANTON)": null,
+    "start_date": "2024-12-29T00:00:00",
+    "end_date": "2025-01-11T00:00:00",
+    "net_sales": 40357.53,
+    "MP_LaborCost": null,
+    "MP_TotalLaborCostExcludingTips": 0.0,
+    "total_labor_cost": 0.0,
+    "labor_cost_pct": 0.0,
+    "sales_per_labor_hour": 81.68548354450876,
+    "labor_cost_per_hour": 0.0,
+    "overtime_pct": 1.9167712423592276,
+    "period_midpoint": "2025-01-04T12:00:00"
+  },
   {
     "Period": "7/28-8/10",
     "Tips": 4286.83,
@@ -1185,6 +1227,78 @@
     "labor_cost_per_hour": 30.387280400431838,
     "overtime_pct": 5.362645990774364,
     "period_midpoint": "2025-11-23T12:00:00"
+  },
+  {
+    "Period": "12/1-12/14",
+    "Tips": 3234.83,
+    "service_fee": null,
+    "UC_net_sales": 32746.85,
+    "UC_totalPayroll": 16347.78,
+    "Tips_Distributed": 3281.17,
+    "if_match": 46.34,
+    "labor_cost": 13066.61,
+    "labor_cost/net_sales": 0.3990188369,
+    "total_Labor_hour": 518.42,
+    "OT_hour": 12.7,
+    "SPLH": 63.16664095,
+    "HC": 10.0,
+    "Payroll_Dismissal": 354.88,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_NonRegularTotal": 354.88,
+    "Other": null,
+    "PL_TotalLaborCostExcludingTips": 13421.49,
+    "TotalLaborCost/NetSales": 0.4098559098,
+    "Unnamed: 21": null,
+    "PL(PLEASANTON)": null,
+    "start_date": "2025-12-01T00:00:00",
+    "end_date": "2025-12-14T00:00:00",
+    "net_sales": 32746.85,
+    "MP_LaborCost": 13066.61,
+    "MP_TotalLaborCostExcludingTips": 13421.49,
+    "total_labor_cost": 13421.49,
+    "labor_cost_pct": 40.98559098050652,
+    "sales_per_labor_hour": 63.166640947494315,
+    "labor_cost_per_hour": 25.889221094865167,
+    "overtime_pct": 2.4497511670074457,
+    "period_midpoint": "2025-12-07T12:00:00"
+  },
+  {
+    "Period": "12/15-12/28",
+    "Tips": 3898.33,
+    "service_fee": null,
+    "UC_net_sales": 40141.57,
+    "UC_totalPayroll": 15255.04,
+    "Tips_Distributed": 3871.98,
+    "if_match": -26.35,
+    "labor_cost": 11383.06,
+    "labor_cost/net_sales": 0.2835728647,
+    "total_Labor_hour": 419.5,
+    "OT_hour": 7.5,
+    "SPLH": 95.68908224,
+    "HC": 8.0,
+    "Payroll_Dismissal": 1303.42,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_NonRegularTotal": 1303.42,
+    "Other": null,
+    "PL_TotalLaborCostExcludingTips": 12686.48,
+    "TotalLaborCost/NetSales": 0.3160434432,
+    "Unnamed: 21": null,
+    "PL(PLEASANTON)": null,
+    "start_date": "2025-12-15T00:00:00",
+    "end_date": "2025-12-28T00:00:00",
+    "net_sales": 40141.57,
+    "MP_LaborCost": 11383.06,
+    "MP_TotalLaborCostExcludingTips": 12686.48,
+    "total_labor_cost": 12686.48,
+    "labor_cost_pct": 31.60434432435004,
+    "sales_per_labor_hour": 95.68908224076281,
+    "labor_cost_per_hour": 30.241907032181167,
+    "overtime_pct": 1.7878426698450536,
+    "period_midpoint": "2025-12-21T12:00:00"
   }
 ]
     </script>
@@ -1194,23 +1308,23 @@
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="label">总净销售额</div>
-                <div class="value">$336,839.50</div>
+                <div class="value">$450,085.45</div>
             </div>
             <div class="metric-card">
                 <div class="label">总人工成本</div>
-                <div class="value">$118,594.25</div>
+                <div class="value">$144,702.22</div>
             </div>
             <div class="metric-card">
                 <div class="label">平均人工成本占比</div>
-                <div class="value">35.21%</div>
+                <div class="value">32.15%</div>
             </div>
             <div class="metric-card">
                 <div class="label">总人工工时</div>
-                <div class="value">4,628.55</div>
+                <div class="value">6,060.53</div>
             </div>
             <div class="metric-card">
                 <div class="label">平均每小时销售额</div>
-                <div class="value">$74.35</div>
+                <div class="value">$75.81</div>
             </div>
         </div>
     </div>
@@ -1252,27 +1366,27 @@
             </tr>
             <tr>
                 <td>分析时间段数</td>
-                <td>9 个</td>
+                <td>12 个</td>
             </tr>
             <tr>
                 <td>平均人工成本占比</td>
-                <td>35.81%</td>
+                <td>32.90%</td>
             </tr>
             <tr>
                 <td>最低人工成本占比</td>
-                <td>23.52% (时间段: 7/28-8/10)</td>
+                <td>0.00% (时间段: 12/29-1/11)</td>
             </tr>
             <tr>
                 <td>最高人工成本占比</td>
-                <td>40.33% (时间段: 10/20-11/02)</td>
+                <td>40.99% (时间段: 12/1-12/14)</td>
             </tr>
             <tr>
                 <td>标准差</td>
-                <td>5.32%</td>
+                <td>11.49%</td>
             </tr>
             <tr>
                 <td>平均每小时销售额 (SPLH)</td>
-                <td>$74.35</td>
+                <td>$75.81</td>
             </tr>
             <tr>
                 <td>最佳 SPLH</td>
@@ -1284,11 +1398,11 @@
             </tr>
             <tr>
                 <td>平均加班工时占比</td>
-                <td>3.72%</td>
+                <td>3.30%</td>
             </tr>
             <tr>
                 <td>总加班工时</td>
-                <td>168.43 小时</td>
+                <td>198.10 小时</td>
             </tr>
             <tr>
                 <td>平均员工数量</td>
@@ -1317,18 +1431,18 @@
             </thead>
             <tbody id="periodTableBody">
 
-            <tr data-period="11/17-11/30">
-                <td>11/17-11/30</td>
-                <td>$45,459.57</td>
-                <td>$15,480.80</td>
-                <td>34.05%</td>
-                <td>$89.23</td>
-                <td>509.45</td>
-                <td>27.32</td>
-                <td>5.36%</td>
-                <td>9</td>
-                <td style="color: #e74c3c; font-weight: bold;">+92.39%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+22.13%</td>
+            <tr data-period="12/15-12/28">
+                <td>12/15-12/28</td>
+                <td>$40,141.57</td>
+                <td>$12,686.48</td>
+                <td>31.60%</td>
+                <td>$95.69</td>
+                <td>419.50</td>
+                <td>7.50</td>
+                <td>1.79%</td>
+                <td>8</td>
+                <td style="color: #27ae60; font-weight: bold;">-40.94%</td>
+                <td style="color: #27ae60; font-weight: bold;">-5.48%</td>
             </tr>
 
             </tbody>

@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>SM门店人工效率分析报告</title>
+    <title>SM门店2025年度人效分析报告</title>
     <style>
         body {
             font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
@@ -825,11 +825,12 @@
 <body>
     <div class="header">
         <a href="/index.html" class="back-button">← 返回主界面</a>
-        <h1>SM门店人工效率分析报告</h1>
+        <h1>SM门店2025年度人效分析报告</h1>
         <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <label for="startDate" style="font-size: 1.1em;">分析期间：</label>
             <select id="startDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择开始日期</option>
+                <option value="2024-12-29">2024年12月29日</option>
                 <option value="2025-04-07">2025年04月07日</option>
                 <option value="2025-04-21">2025年04月21日</option>
                 <option value="2025-05-05">2025年05月05日</option>
@@ -847,10 +848,13 @@
                 <option value="2025-10-20">2025年10月20日</option>
                 <option value="2025-11-03">2025年11月03日</option>
                 <option value="2025-11-17">2025年11月17日</option>
+                <option value="2025-12-01">2025年12月01日</option>
+                <option value="2025-12-15">2025年12月15日</option>
             </select>
             <span style="font-size: 1.1em;">至</span>
             <select id="endDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择结束日期</option>
+                <option value="2024-12-29">2024年12月29日</option>
                 <option value="2025-04-07">2025年04月07日</option>
                 <option value="2025-04-21">2025年04月21日</option>
                 <option value="2025-05-05">2025年05月05日</option>
@@ -868,16 +872,55 @@
                 <option value="2025-10-20">2025年10月20日</option>
                 <option value="2025-11-03">2025年11月03日</option>
                 <option value="2025-11-17">2025年11月17日</option>
+                <option value="2025-12-01">2025年12月01日</option>
+                <option value="2025-12-15">2025年12月15日</option>
             </select>
             <button id="confirmDateBtn" onclick="updateDateRange()" class="confirm-btn" style="margin-left: 10px;">确认</button>
-            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2025年04月07日 - 2025年11月17日</span>
+            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2024年12月29日 - 2025年12月15日</span>
         </div>
-        <p>报告生成时间：2026年01月14日</p>
+        <p>报告生成时间：2026年01月17日</p>
     </div>
     
     <!-- Embed all data as JSON for JavaScript filtering -->
     <script type="application/json" id="allData">
 [
+  {
+    "Period": "12/29-1/11",
+    "Tips": null,
+    "sm_net_sales": 51750.48,
+    "sm_totalLaborcost": 21360.39,
+    "Tips_Distributed": 3213.13,
+    "if_match": null,
+    "UC_LaborCost_no_tips": null,
+    "labor_cost/net_sales": null,
+    "total_Labor_hour": 713.34,
+    "OT Hours(new)": 167.5,
+    "SPLH": 72.54672386,
+    "HC": 9.0,
+    "Payroll_Dismissal": null,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_NonRegularTotal": null,
+    "Extra(Bonus)": null,
+    "Other": null,
+    "SM_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSales": null,
+    "Unnamed: 21": null,
+    "SM（San Mateo）": null,
+    "start_date": "2024-12-29T00:00:00",
+    "end_date": "2025-01-11T00:00:00",
+    "net_sales": 51750.48,
+    "MP_LaborCost": null,
+    "MP_TotalLaborCostExcludingTips": null,
+    "total_labor_cost": null,
+    "OT_hour": 167.5,
+    "labor_cost_pct": null,
+    "sales_per_labor_hour": 72.5467238623938,
+    "labor_cost_per_hour": null,
+    "overtime_pct": 23.481088961785403,
+    "period_midpoint": "2025-01-04T12:00:00"
+  },
   {
     "Period": "4/7-4/20",
     "Tips": 2263.44,
@@ -1506,6 +1549,80 @@
     "labor_cost_per_hour": 27.899434833254244,
     "overtime_pct": 22.191063750233692,
     "period_midpoint": "2025-11-23T12:00:00"
+  },
+  {
+    "Period": "12/1-12/14",
+    "Tips": 2962.11,
+    "sm_net_sales": 45984.18,
+    "sm_totalLaborcost": 18650.82,
+    "Tips_Distributed": 2968.11,
+    "if_match": 6.0,
+    "UC_LaborCost_no_tips": 15682.71,
+    "labor_cost/net_sales": 0.3410457683,
+    "total_Labor_hour": 703.94,
+    "OT Hours(new)": 160.93,
+    "SPLH": 65.32400489,
+    "HC": 10.0,
+    "Payroll_Dismissal": null,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_NonRegularTotal": null,
+    "Extra(Bonus)": null,
+    "Other": null,
+    "SM_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSales": null,
+    "Unnamed: 21": null,
+    "SM（San Mateo）": null,
+    "start_date": "2025-12-01T00:00:00",
+    "end_date": "2025-12-14T00:00:00",
+    "net_sales": 45984.18,
+    "MP_LaborCost": 15682.71,
+    "MP_TotalLaborCostExcludingTips": null,
+    "total_labor_cost": 15682.71,
+    "OT_hour": 160.93,
+    "labor_cost_pct": 34.10457683490279,
+    "sales_per_labor_hour": 65.32400488678012,
+    "labor_cost_per_hour": 22.278475438247575,
+    "overtime_pct": 22.86132340824502,
+    "period_midpoint": "2025-12-07T12:00:00"
+  },
+  {
+    "Period": "12/15-12/28",
+    "Tips": 3298.15,
+    "sm_net_sales": 51051.28,
+    "sm_totalLaborcost": 20698.24,
+    "Tips_Distributed": 2968.25,
+    "if_match": -329.9,
+    "UC_LaborCost_no_tips": 17729.99,
+    "labor_cost/net_sales": 0.3472976584,
+    "total_Labor_hour": 703.81,
+    "OT Hours(new)": 129.78,
+    "SPLH": 72.5355991,
+    "HC": 9.0,
+    "Payroll_Dismissal": null,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_NonRegularTotal": null,
+    "Extra(Bonus)": null,
+    "Other": null,
+    "SM_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSales": null,
+    "Unnamed: 21": null,
+    "SM（San Mateo）": null,
+    "start_date": "2025-12-15T00:00:00",
+    "end_date": "2025-12-28T00:00:00",
+    "net_sales": 51051.28,
+    "MP_LaborCost": 17729.99,
+    "MP_TotalLaborCostExcludingTips": null,
+    "total_labor_cost": 17729.99,
+    "OT_hour": 129.78,
+    "labor_cost_pct": 34.72976583545016,
+    "sales_per_labor_hour": 72.53559909634703,
+    "labor_cost_per_hour": 25.191443713502228,
+    "overtime_pct": 18.43963569713417,
+    "period_midpoint": "2025-12-21T12:00:00"
   }
 ]
     </script>
@@ -1515,23 +1632,23 @@
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="label">总净销售额</div>
-                <div class="value">$593,862.66</div>
+                <div class="value">$742,648.60</div>
             </div>
             <div class="metric-card">
                 <div class="label">总人工成本</div>
-                <div class="value">$333,827.84</div>
+                <div class="value">$367,240.54</div>
             </div>
             <div class="metric-card">
                 <div class="label">平均人工成本占比</div>
-                <div class="value">56.21%</div>
+                <div class="value">49.45%</div>
             </div>
             <div class="metric-card">
                 <div class="label">总人工工时</div>
-                <div class="value">11,314.97</div>
+                <div class="value">13,436.06</div>
             </div>
             <div class="metric-card">
                 <div class="label">平均每小时销售额</div>
-                <div class="value">$52.72</div>
+                <div class="value">$55.33</div>
             </div>
         </div>
     </div>
@@ -1573,15 +1690,15 @@
             </tr>
             <tr>
                 <td>分析时间段数</td>
-                <td>17 个</td>
+                <td>20 个</td>
             </tr>
             <tr>
                 <td>平均人工成本占比</td>
-                <td>56.62%</td>
+                <td>54.28%</td>
             </tr>
             <tr>
                 <td>最低人工成本占比</td>
-                <td>43.48% (时间段: 10/6-10/19)</td>
+                <td>34.10% (时间段: 12/1-12/14)</td>
             </tr>
             <tr>
                 <td>最高人工成本占比</td>
@@ -1589,15 +1706,15 @@
             </tr>
             <tr>
                 <td>标准差</td>
-                <td>11.53%</td>
+                <td>12.93%</td>
             </tr>
             <tr>
                 <td>平均每小时销售额 (SPLH)</td>
-                <td>$52.72</td>
+                <td>$55.33</td>
             </tr>
             <tr>
                 <td>最佳 SPLH</td>
-                <td>$64.01 (时间段: 11/17-11/30)</td>
+                <td>$72.55 (时间段: 12/29-1/11)</td>
             </tr>
             <tr>
                 <td>最差 SPLH</td>
@@ -1605,11 +1722,11 @@
             </tr>
             <tr>
                 <td>平均加班工时占比</td>
-                <td>22.19%</td>
+                <td>22.06%</td>
             </tr>
             <tr>
                 <td>总加班工时</td>
-                <td>1,733.88 小时</td>
+                <td>2,192.09 小时</td>
             </tr>
             <tr>
                 <td>平均员工数量</td>
@@ -1638,18 +1755,18 @@
             </thead>
             <tbody id="periodTableBody">
 
-            <tr data-period="11/17-11/30">
-                <td>11/17-11/30</td>
-                <td>$44,508.97</td>
-                <td>$19,400.43</td>
-                <td>43.59%</td>
-                <td>$64.01</td>
-                <td>695.37</td>
-                <td>154.31</td>
-                <td>22.19%</td>
+            <tr data-period="12/15-12/28">
+                <td>12/15-12/28</td>
+                <td>$51,051.28</td>
+                <td>$17,729.99</td>
+                <td>34.73%</td>
+                <td>$72.54</td>
+                <td>703.81</td>
+                <td>129.78</td>
+                <td>18.44%</td>
                 <td>9</td>
-                <td style="color: #27ae60; font-weight: bold;">-18.34%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+8.80%</td>
+                <td style="color: #27ae60; font-weight: bold;">-19.36%</td>
+                <td style="color: #e74c3c; font-weight: bold;">+13.05%</td>
             </tr>
 
             </tbody>
