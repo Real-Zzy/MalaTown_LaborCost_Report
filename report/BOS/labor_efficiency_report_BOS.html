@@ -452,50 +452,106 @@
             // Find previous payroll for comparison
             var prevPayroll = sortedData.length > 1 ? sortedData[sortedData.length - 2] : null;
             
-            // Calculate change percentages
-            var otChange = 0;
-            var costChange = 0;
-            if (prevPayroll) {
-                if (prevPayroll.OT_hour > 0) {
-                    otChange = ((lastPayroll.OT_hour - prevPayroll.OT_hour) / prevPayroll.OT_hour) * 100;
-                }
-                if (prevPayroll.total_labor_cost > 0) {
-                    costChange = ((lastPayroll.total_labor_cost - prevPayroll.total_labor_cost) / prevPayroll.total_labor_cost) * 100;
-                }
-            }
-            
             // Format period string (e.g., "11/10-11/23" -> "11/10–11/23" with en dash)
             var period = (lastPayroll.Period || '').replace(/-/g, '–');
             
+            // Calculate change percentages
+            var salesChange = 0;
+            var laborCostChange = 0;
+            var laborPctChange = 0;
+            var splhChange = 0;
+            var otChange = 0;
+            
+            if (prevPayroll) {
+                if (prevPayroll.net_sales > 0) {
+                    salesChange = ((lastPayroll.net_sales - prevPayroll.net_sales) / prevPayroll.net_sales) * 100;
+                }
+                if (prevPayroll.total_labor_cost > 0) {
+                    laborCostChange = ((lastPayroll.total_labor_cost - prevPayroll.total_labor_cost) / prevPayroll.total_labor_cost) * 100;
+                }
+                if (prevPayroll.labor_cost_pct > 0) {
+                    laborPctChange = lastPayroll.labor_cost_pct - prevPayroll.labor_cost_pct;
+                }
+                if (prevPayroll.sales_per_labor_hour > 0) {
+                    splhChange = ((lastPayroll.sales_per_labor_hour - prevPayroll.sales_per_labor_hour) / prevPayroll.sales_per_labor_hour) * 100;
+                }
+                if (prevPayroll.OT_hour > 0) {
+                    otChange = ((lastPayroll.OT_hour - prevPayroll.OT_hour) / prevPayroll.OT_hour) * 100;
+                }
+            }
+            
+            // Determine efficiency status (上升/下降/持平)
+            var efficiencyStatus = '持平';
+            // Use SPLH change as primary indicator, with labor cost % as secondary
+            if (prevPayroll) {
+                if (splhChange > 2 || (splhChange > 0 && laborPctChange < -0.5)) {
+                    efficiencyStatus = '上升';
+                } else if (splhChange < -2 || (splhChange < 0 && laborPctChange > 0.5)) {
+                    efficiencyStatus = '下降';
+                }
+            }
+            
             // Format numbers
-            var netSales = (lastPayroll.net_sales || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            var laborCost = (lastPayroll.total_labor_cost || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            var laborCostPct = (lastPayroll.labor_cost_pct || 0).toFixed(2);
-            var totalHours = (lastPayroll.total_Labor_hour || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            var splh = (lastPayroll.sales_per_labor_hour || 0).toFixed(2);
-            var otHours = (lastPayroll.OT_hour || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            var otPct = (lastPayroll.overtime_pct || 0).toFixed(2);
-            var hc = (lastPayroll.HC || 0).toFixed(0);
+            var netSales = '$' + (lastPayroll.net_sales || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            var laborCost = '$' + (lastPayroll.total_labor_cost || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            var laborCostPct = (lastPayroll.labor_cost_pct || 0).toFixed(2) + '%';
+            var totalHours = (lastPayroll.total_Labor_hour || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' 小时';
+            var splh = '$' + (lastPayroll.sales_per_labor_hour || 0).toFixed(2);
+            var otHours = (lastPayroll.OT_hour || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' 小时';
+            var hc = (lastPayroll.HC || 0).toFixed(0) + ' 人';
+            
+            // Calculate average hours per employee
+            var avgHoursPerEmployee = lastPayroll.HC > 0 ? ((lastPayroll.total_Labor_hour || 0) / lastPayroll.HC).toFixed(2) + ' 小时' : '0.00 小时';
             
             // Format change percentages
-            var otChangeText = '';
-            var costChangeText = '';
-            if (prevPayroll) {
-                otChangeText = (otChange > 0 ? '上升' : '下降') + ' ' + Math.abs(otChange).toFixed(2) + '%';
-                costChangeText = (costChange > 0 ? '上升' : '下降') + ' ' + Math.abs(costChange).toFixed(2) + '%';
+            function formatChange(change, isPercentage) {
+                if (!prevPayroll) return '-';
+                var sign = change > 0 ? '+' : '';
+                var absChange = Math.abs(change).toFixed(2);
+                return sign + absChange + (isPercentage ? '%' : '');
             }
             
-            // Generate analysis text in the required format
-            // Format: 在 11/10–11/23 期间，门店实现净销售额 $83,290.57，对应人工成本 $24,524.84（占比 29.44%），在总工时 1,185.60 小时下实现每小时销售额 $70.25；其中加班工时 44.04 小时（占比 3.71%），员工人数 19 人，加班幅度环比上升 58.82%，人工成本下降 1.65%。
-            var analysisText = '在 ' + period + ' 期间，门店实现净销售额 $' + netSales + '，对应人工成本 $' + laborCost + '（占比 ' + laborCostPct + '%），在总工时 ' + totalHours + ' 小时下实现每小时销售额 $' + splh + '；其中加班工时 ' + otHours + ' 小时（占比 ' + otPct + '%），员工人数 ' + hc + ' 人';
+            var salesChangeText = formatChange(salesChange, true);
+            var laborCostChangeText = formatChange(laborCostChange, true);
+            var laborPctChangeText = formatChange(laborPctChange, false) + '%';
+            var splhChangeText = formatChange(splhChange, true);
+            var otChangeText = formatChange(otChange, true);
             
-            if (prevPayroll) {
-                analysisText += '，加班幅度环比' + otChangeText + '，人工成本' + costChangeText + '。';
-            } else {
-                analysisText += '。';
-            }
+            // Generate HTML in the new format
+            var html = '<div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-top: 15px;">';
+            html += '<h3 style="margin-top: 0;">最新一期 Payroll 运行概览（' + period + '）</h3>';
+            html += '<p style="font-size: 1.1em; margin-bottom: 20px;"><strong>人效状态：</strong><span style="color: ' + (efficiencyStatus === '上升' ? '#27ae60' : efficiencyStatus === '下降' ? '#e74c3c' : '#f39c12') + '; font-weight: bold;">' + efficiencyStatus + '</span></p>';
             
-            analysisDiv.innerHTML = '<p>' + analysisText + '</p>';
+            html += '<div style="margin-bottom: 25px;">';
+            html += '<h4>① 销售与人工成本</h4>';
+            html += '<ul style="list-style: none; padding-left: 0; line-height: 2;">';
+            html += '<li> 净销售额：' + netSales + '（环比 ' + salesChangeText + '）</li>';
+            html += '<li> 人工成本：' + laborCost + '（环比 ' + laborCostChangeText + '）</li>';
+            html += '<li> 人工成本占比：' + laborCostPct + '（环比 ' + laborPctChangeText + '）</li>';
+            html += '</ul>';
+            html += '</div>';
+            
+            html += '<div style="margin-bottom: 25px;">';
+            html += '<h4>② 工时与人力结构</h4>';
+            html += '<ul style="list-style: none; padding-left: 0; line-height: 2;">';
+            html += '<li> 总工时：' + totalHours + '</li>';
+            html += '<li> 员工人数：' + hc + '</li>';
+            html += '<li> 人均工时：' + avgHoursPerEmployee + '</li>';
+            html += '</ul>';
+            html += '</div>';
+            
+            html += '<div style="margin-bottom: 15px;">';
+            html += '<h4>③ 效率与加班情况</h4>';
+            html += '<ul style="list-style: none; padding-left: 0; line-height: 2;">';
+            html += '<li> SPLH（每小时销售额）：' + splh + '（环比 ' + splhChangeText + '）</li>';
+            html += '<li> 加班工时：' + otHours + '</li>';
+            html += '<li> 加班工时变化：' + otChangeText + '</li>';
+            html += '</ul>';
+            html += '</div>';
+            
+            html += '</div>';
+            
+            analysisDiv.innerHTML = html;
         }
         
         function updateCharts(data) {
@@ -1888,6 +1944,13 @@
     </div>
     
     <div class="section">
+        <h2>最新一期 Payroll 运行概览</h2>
+        <div id="recentPayrollAnalysis" style="line-height: 1.8;">
+            <p>正在加载数据...</p>
+        </div>
+    </div>
+    
+    <div class="section">
         <h2>可视化分析</h2>
         <div class="chart-tabs">
             <div class="tab-buttons">
@@ -2005,13 +2068,6 @@
 
             </tbody>
         </table>
-    </div>
-    
-    <div class="section">
-        <h2>近期payroll数据分析</h2>
-        <div id="recentPayrollAnalysis" style="line-height: 1.8;">
-            <p>正在加载数据...</p>
-        </div>
     </div>
     
     <div class="footer">
