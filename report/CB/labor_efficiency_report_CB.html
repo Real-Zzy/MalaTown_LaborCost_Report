@@ -830,7 +830,6 @@
             <label for="startDate" style="font-size: 1.1em;">分析期间：</label>
             <select id="startDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择开始日期</option>
-                <option value="2024-12-22">2024年12月22日</option>
                 <option value="2025-01-06">2025年01月06日</option>
                 <option value="2025-01-20">2025年01月20日</option>
                 <option value="2025-02-03">2025年02月03日</option>
@@ -856,11 +855,11 @@
                 <option value="2025-11-10">2025年11月10日</option>
                 <option value="2025-11-24">2025年11月24日</option>
                 <option value="2025-12-08">2025年12月08日</option>
+                <option value="2025-12-22">2025年12月22日</option>
             </select>
             <span style="font-size: 1.1em;">至</span>
             <select id="endDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择结束日期</option>
-                <option value="2024-12-22">2024年12月22日</option>
                 <option value="2025-01-06">2025年01月06日</option>
                 <option value="2025-01-20">2025年01月20日</option>
                 <option value="2025-02-03">2025年02月03日</option>
@@ -886,9 +885,10 @@
                 <option value="2025-11-10">2025年11月10日</option>
                 <option value="2025-11-24">2025年11月24日</option>
                 <option value="2025-12-08">2025年12月08日</option>
+                <option value="2025-12-22">2025年12月22日</option>
             </select>
             <button id="confirmDateBtn" onclick="updateDateRange()" class="confirm-btn" style="margin-left: 10px;">确认</button>
-            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2024年12月22日 - 2025年12月08日</span>
+            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2025年01月06日 - 2025年12月22日</span>
         </div>
         <p>报告生成时间：2026年01月17日</p>
     </div>
@@ -896,43 +896,6 @@
     <!-- Embed all data as JSON for JavaScript filtering -->
     <script type="application/json" id="allData">
 [
-  {
-    "Period": "12/22-1/4",
-    "CU_total_net_sales": 46002.72,
-    "Tips": 1078.71,
-    "Total_Payroll": 19688.0,
-    "Tips_Distributed": 1116.04,
-    "if_match": 37.33,
-    "CU_LaborCost_no_tips": 18571.96,
-    "labor_cost/net_sales": 0.2459439749,
-    "total_Labor_hour": 791.87,
-    "OT_hour": 93.03,
-    "SPLH": 58.09377802,
-    "HC": 10.0,
-    "Payroll_Dismissal": null,
-    "Payroll_OffCycle": null,
-    "Payroll_NonGusto": null,
-    "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
-    "Payroll_NewHire": null,
-    "Payroll_NonRegularTotal": null,
-    "Other": null,
-    "CB_TotalLaborCostExcludingTips": null,
-    "TotalLaborCost/NetSales": null,
-    "Unnamed: 22": null,
-    "CB（Columbus）": "建议：",
-    "start_date": "2024-12-22T00:00:00",
-    "end_date": "2025-01-04T00:00:00",
-    "net_sales": 46002.72,
-    "MP_LaborCost": 18571.96,
-    "MP_TotalLaborCostExcludingTips": null,
-    "total_labor_cost": 18571.96,
-    "labor_cost_pct": 40.371438906221194,
-    "sales_per_labor_hour": 58.0937780191193,
-    "labor_cost_per_hour": 23.453294101304508,
-    "overtime_pct": 11.748140477603647,
-    "period_midpoint": "2024-12-28T12:00:00"
-  },
   {
     "Period": "1/6-1/19",
     "CU_total_net_sales": 55926.7,
@@ -961,8 +924,6 @@
     "start_date": "2025-01-06T00:00:00",
     "end_date": "2025-01-19T00:00:00",
     "net_sales": 55926.7,
-    "MP_LaborCost": 22161.63,
-    "MP_TotalLaborCostExcludingTips": 22161.63,
     "total_labor_cost": 22161.63,
     "labor_cost_pct": 39.62620716044395,
     "sales_per_labor_hour": 63.35795448108665,
@@ -998,8 +959,6 @@
     "start_date": "2025-01-20T00:00:00",
     "end_date": "2025-02-02T00:00:00",
     "net_sales": 79001.09,
-    "MP_LaborCost": 22872.89,
-    "MP_TotalLaborCostExcludingTips": 23569.69,
     "total_labor_cost": 23569.69,
     "labor_cost_pct": 29.834638990424057,
     "sales_per_labor_hour": 85.40935381688054,
@@ -1035,8 +994,6 @@
     "start_date": "2025-02-03T00:00:00",
     "end_date": "2025-02-16T00:00:00",
     "net_sales": 80687.03,
-    "MP_LaborCost": 20270.09,
-    "MP_TotalLaborCostExcludingTips": 20270.09,
     "total_labor_cost": 20270.09,
     "labor_cost_pct": 25.121869029012473,
     "sales_per_labor_hour": 98.65869852293847,
@@ -1072,8 +1029,6 @@
     "start_date": "2025-02-17T00:00:00",
     "end_date": "2025-03-02T00:00:00",
     "net_sales": 82279.09,
-    "MP_LaborCost": 20396.49,
-    "MP_TotalLaborCostExcludingTips": 20396.49,
     "total_labor_cost": 20396.49,
     "labor_cost_pct": 24.789396674173233,
     "sales_per_labor_hour": 97.02608459805899,
@@ -1109,8 +1064,6 @@
     "start_date": "2025-03-03T00:00:00",
     "end_date": "2025-03-16T00:00:00",
     "net_sales": 76202.22,
-    "MP_LaborCost": 18537.08,
-    "MP_TotalLaborCostExcludingTips": 18537.08,
     "total_labor_cost": 18537.08,
     "labor_cost_pct": 24.32616792529142,
     "sales_per_labor_hour": 97.52635822614705,
@@ -1146,8 +1099,6 @@
     "start_date": "2025-03-17T00:00:00",
     "end_date": "2025-03-30T00:00:00",
     "net_sales": 72517.54,
-    "MP_LaborCost": 20186.64,
-    "MP_TotalLaborCostExcludingTips": 20186.64,
     "total_labor_cost": 20186.64,
     "labor_cost_pct": 27.836906767659247,
     "sales_per_labor_hour": 89.88514836758472,
@@ -1183,8 +1134,6 @@
     "start_date": "2025-03-31T00:00:00",
     "end_date": "2025-04-13T00:00:00",
     "net_sales": 87577.92,
-    "MP_LaborCost": 21418.27,
-    "MP_TotalLaborCostExcludingTips": 21418.27,
     "total_labor_cost": 21418.27,
     "labor_cost_pct": 24.456244222287992,
     "sales_per_labor_hour": 104.20732490897409,
@@ -1220,8 +1169,6 @@
     "start_date": "2025-04-14T00:00:00",
     "end_date": "2025-04-27T00:00:00",
     "net_sales": 82481.04,
-    "MP_LaborCost": 22125.81,
-    "MP_TotalLaborCostExcludingTips": 22125.81,
     "total_labor_cost": 22125.81,
     "labor_cost_pct": 26.82532858460563,
     "sales_per_labor_hour": 93.96229252343902,
@@ -1257,8 +1204,6 @@
     "start_date": "2025-04-28T00:00:00",
     "end_date": "2025-05-11T00:00:00",
     "net_sales": 86959.89,
-    "MP_LaborCost": 20876.83,
-    "MP_TotalLaborCostExcludingTips": 20876.83,
     "total_labor_cost": 20876.83,
     "labor_cost_pct": 24.00742457240919,
     "sales_per_labor_hour": 104.4036522114969,
@@ -1294,8 +1239,6 @@
     "start_date": "2025-05-12T00:00:00",
     "end_date": "2025-05-25T00:00:00",
     "net_sales": 66685.18,
-    "MP_LaborCost": 20804.88,
-    "MP_TotalLaborCostExcludingTips": 20804.88,
     "total_labor_cost": 20804.88,
     "labor_cost_pct": 31.198656133191815,
     "sales_per_labor_hour": 82.56181750649992,
@@ -1331,8 +1274,6 @@
     "start_date": "2025-05-26T00:00:00",
     "end_date": "2025-06-08T00:00:00",
     "net_sales": 51801.22,
-    "MP_LaborCost": 19247.16,
-    "MP_TotalLaborCostExcludingTips": 20345.45,
     "total_labor_cost": 20345.45,
     "labor_cost_pct": 39.27600546859707,
     "sales_per_labor_hour": 68.74291022493532,
@@ -1368,8 +1309,6 @@
     "start_date": "2025-06-09T00:00:00",
     "end_date": "2025-06-22T00:00:00",
     "net_sales": 45051.78,
-    "MP_LaborCost": 17561.95,
-    "MP_TotalLaborCostExcludingTips": 17763.18,
     "total_labor_cost": 17763.18,
     "labor_cost_pct": 39.42836442866409,
     "sales_per_labor_hour": 67.51252041779684,
@@ -1405,8 +1344,6 @@
     "start_date": "2025-06-23T00:00:00",
     "end_date": "2025-07-06T00:00:00",
     "net_sales": 44788.03,
-    "MP_LaborCost": 17003.64,
-    "MP_TotalLaborCostExcludingTips": 17003.64,
     "total_labor_cost": 17003.64,
     "labor_cost_pct": 37.96469726397879,
     "sales_per_labor_hour": 76.82733245278487,
@@ -1442,8 +1379,6 @@
     "start_date": "2025-07-07T00:00:00",
     "end_date": "2025-07-20T00:00:00",
     "net_sales": 38632.07,
-    "MP_LaborCost": 14678.39,
-    "MP_TotalLaborCostExcludingTips": 16189.47,
     "total_labor_cost": 16189.47,
     "labor_cost_pct": 41.906814726728335,
     "sales_per_labor_hour": 73.50508971212207,
@@ -1479,8 +1414,6 @@
     "start_date": "2025-07-21T00:00:00",
     "end_date": "2025-08-03T00:00:00",
     "net_sales": 45026.54,
-    "MP_LaborCost": 17234.01,
-    "MP_TotalLaborCostExcludingTips": 19323.73,
     "total_labor_cost": 19323.73,
     "labor_cost_pct": 42.91631113561024,
     "sales_per_labor_hour": 72.89032425169573,
@@ -1516,8 +1449,6 @@
     "start_date": "2025-08-04T00:00:00",
     "end_date": "2025-08-17T00:00:00",
     "net_sales": 43689.16,
-    "MP_LaborCost": 16721.61,
-    "MP_TotalLaborCostExcludingTips": 17766.46,
     "total_labor_cost": 17766.46,
     "labor_cost_pct": 40.66560217683288,
     "sales_per_labor_hour": 64.04251015113091,
@@ -1553,8 +1484,6 @@
     "start_date": "2025-08-18T00:00:00",
     "end_date": "2025-08-31T00:00:00",
     "net_sales": 58021.76,
-    "MP_LaborCost": 19433.45,
-    "MP_TotalLaborCostExcludingTips": 19739.32,
     "total_labor_cost": 19739.32,
     "labor_cost_pct": 34.020546774175756,
     "sales_per_labor_hour": 69.195439584029,
@@ -1590,8 +1519,6 @@
     "start_date": "2025-09-01T00:00:00",
     "end_date": "2025-09-14T00:00:00",
     "net_sales": 70296.27,
-    "MP_LaborCost": 14679.39,
-    "MP_TotalLaborCostExcludingTips": 17370.16,
     "total_labor_cost": 17370.16,
     "labor_cost_pct": 24.709931266623393,
     "sales_per_labor_hour": 68.43417606915821,
@@ -1627,8 +1554,6 @@
     "start_date": "2025-09-15T00:00:00",
     "end_date": "2025-09-28T00:00:00",
     "net_sales": 66727.62,
-    "MP_LaborCost": 21416.57,
-    "MP_TotalLaborCostExcludingTips": 23659.54,
     "total_labor_cost": 23659.54,
     "labor_cost_pct": 35.456891763860305,
     "sales_per_labor_hour": 69.75498641020279,
@@ -1664,8 +1589,6 @@
     "start_date": "2025-09-29T00:00:00",
     "end_date": "2025-10-12T00:00:00",
     "net_sales": 73754.83,
-    "MP_LaborCost": 21854.93,
-    "MP_TotalLaborCostExcludingTips": 23871.6,
     "total_labor_cost": 23871.6,
     "labor_cost_pct": 32.366151477808295,
     "sales_per_labor_hour": 77.66691237639922,
@@ -1701,8 +1624,6 @@
     "start_date": "2025-10-13T00:00:00",
     "end_date": "2025-10-26T00:00:00",
     "net_sales": 75512.97,
-    "MP_LaborCost": 24874.07,
-    "MP_TotalLaborCostExcludingTips": 28187.38,
     "total_labor_cost": 28187.38,
     "labor_cost_pct": 37.32786566334234,
     "sales_per_labor_hour": 70.78920626587797,
@@ -1738,8 +1659,6 @@
     "start_date": "2025-10-27T00:00:00",
     "end_date": "2025-11-09T00:00:00",
     "net_sales": 74200.96,
-    "MP_LaborCost": 21760.42,
-    "MP_TotalLaborCostExcludingTips": 24782.68,
     "total_labor_cost": 24782.68,
     "labor_cost_pct": 33.39940615323575,
     "sales_per_labor_hour": 78.87425989901675,
@@ -1775,8 +1694,6 @@
     "start_date": "2025-11-10T00:00:00",
     "end_date": "2025-11-23T00:00:00",
     "net_sales": 78172.12,
-    "MP_LaborCost": 19501.31,
-    "MP_TotalLaborCostExcludingTips": 24553.01,
     "total_labor_cost": 24553.01,
     "labor_cost_pct": 31.40890895628774,
     "sales_per_labor_hour": 95.63859696343147,
@@ -1812,8 +1729,6 @@
     "start_date": "2025-11-24T00:00:00",
     "end_date": "2025-12-07T00:00:00",
     "net_sales": 72542.63,
-    "MP_LaborCost": 18161.52,
-    "MP_TotalLaborCostExcludingTips": 22429.2,
     "total_labor_cost": 22429.2,
     "labor_cost_pct": 30.918647421523037,
     "sales_per_labor_hour": 94.12563902945374,
@@ -1849,14 +1764,47 @@
     "start_date": "2025-12-08T00:00:00",
     "end_date": "2025-12-21T00:00:00",
     "net_sales": 75942.2,
-    "MP_LaborCost": 20398.56,
-    "MP_TotalLaborCostExcludingTips": null,
     "total_labor_cost": 20398.56,
     "labor_cost_pct": 26.860638748943277,
     "sales_per_labor_hour": 87.49000587550834,
     "labor_cost_per_hour": 23.500374419649546,
     "overtime_pct": 19.565442794437853,
     "period_midpoint": "2025-12-14T12:00:00"
+  },
+  {
+    "Period": "12/22-1/4",
+    "CU_total_net_sales": 46002.72,
+    "Tips": 1078.71,
+    "Total_Payroll": 19688.0,
+    "Tips_Distributed": 1116.04,
+    "if_match": 37.33,
+    "CU_LaborCost_no_tips": 18571.96,
+    "labor_cost/net_sales": 0.2459439749,
+    "total_Labor_hour": 791.87,
+    "OT_hour": 93.03,
+    "SPLH": 58.09377802,
+    "HC": 10.0,
+    "Payroll_Dismissal": null,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_Bonus": null,
+    "Payroll_NewHire": null,
+    "Payroll_NonRegularTotal": null,
+    "Other": null,
+    "CB_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSales": null,
+    "Unnamed: 22": null,
+    "CB（Columbus）": "建议：",
+    "start_date": "2025-12-22T00:00:00",
+    "end_date": "2026-01-04T00:00:00",
+    "net_sales": 46002.72,
+    "total_labor_cost": 18571.96,
+    "labor_cost_pct": 40.371438906221194,
+    "sales_per_labor_hour": 58.0937780191193,
+    "labor_cost_per_hour": 23.453294101304508,
+    "overtime_pct": 11.748140477603647,
+    "period_midpoint": "2025-12-28T12:00:00"
   }
 ]
     </script>
@@ -1989,18 +1937,18 @@
             </thead>
             <tbody id="periodTableBody">
 
-            <tr data-period="12/08-12/21">
-                <td>12/08-12/21</td>
-                <td>$75,942.20</td>
-                <td>$20,398.56</td>
-                <td>26.86%</td>
-                <td>$87.49</td>
-                <td>868.01</td>
-                <td>169.83</td>
-                <td>19.57%</td>
-                <td>12</td>
-                <td style="color: #e74c3c; font-weight: bold;">+32.93%</td>
-                <td style="color: #27ae60; font-weight: bold;">-9.05%</td>
+            <tr data-period="12/22-1/4">
+                <td>12/22-1/4</td>
+                <td>$46,002.72</td>
+                <td>$18,571.96</td>
+                <td>40.37%</td>
+                <td>$58.09</td>
+                <td>791.87</td>
+                <td>93.03</td>
+                <td>11.75%</td>
+                <td>10</td>
+                <td style="color: #27ae60; font-weight: bold;">-45.22%</td>
+                <td style="color: #27ae60; font-weight: bold;">-8.95%</td>
             </tr>
 
             </tbody>

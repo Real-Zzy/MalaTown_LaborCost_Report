@@ -1,69 +1,76 @@
 {
-  "generated": "2026-01-17T06:09:08.684Z",
-  "count": 9,
+  "generated": "2026-01-17T08:15:52.370Z",
+  "count": 10,
   "reports": [
+    {
+      "name": "labor_efficiency_report_BAR.html",
+      "path": "report/BAR/labor_efficiency_report_BAR.html",
+      "store": "BAR",
+      "size": 50237,
+      "modified": "2026-01-17T07:29:20.893Z"
+    },
     {
       "name": "labor_efficiency_report_BOS.html",
       "path": "report/BOS/labor_efficiency_report_BOS.html",
       "store": "BOS",
-      "size": 76721,
-      "modified": "2026-01-17T06:06:49.593Z"
+      "size": 76714,
+      "modified": "2026-01-17T07:29:05.448Z"
     },
     {
       "name": "labor_efficiency_report_CB.html",
       "path": "report/CB/labor_efficiency_report_CB.html",
       "store": "CB",
-      "size": 76794,
-      "modified": "2026-01-17T06:07:19.854Z"
+      "size": 74771,
+      "modified": "2026-01-17T07:29:18.820Z"
     },
     {
       "name": "labor_efficiency_report_EDI.html",
       "path": "report/EDI/labor_efficiency_report_EDI.html",
       "store": "EDI",
-      "size": 76479,
-      "modified": "2026-01-17T06:07:01.029Z"
+      "size": 76475,
+      "modified": "2026-01-17T07:29:09.645Z"
     },
     {
       "name": "labor_efficiency_report_JC.html",
       "path": "report/JC/labor_efficiency_report_JC.html",
       "store": "JC",
-      "size": 76950,
-      "modified": "2026-01-17T06:07:07.638Z"
+      "size": 76946,
+      "modified": "2026-01-17T07:29:12.542Z"
     },
     {
       "name": "labor_efficiency_report_LV.html",
       "path": "report/LV/labor_efficiency_report_LV.html",
       "store": "LV",
-      "size": 77955,
-      "modified": "2026-01-17T06:07:13.266Z"
+      "size": 77948,
+      "modified": "2026-01-17T07:29:15.575Z"
     },
     {
       "name": "labor_efficiency_report_MP.html",
       "path": "report/MP/labor_efficiency_report_MP.html",
       "store": "MP",
-      "size": 70663,
-      "modified": "2026-01-15T02:36:02.580Z"
+      "size": 71814,
+      "modified": "2026-01-17T07:39:50.194Z"
     },
     {
       "name": "labor_efficiency_report_PL.html",
       "path": "report/PL/labor_efficiency_report_PL.html",
       "store": "PL",
-      "size": 57730,
-      "modified": "2026-01-17T06:06:40.129Z"
+      "size": 57724,
+      "modified": "2026-01-17T08:12:03.792Z"
     },
     {
       "name": "labor_efficiency_report_SM.html",
       "path": "report/SM/labor_efficiency_report_SM.html",
       "store": "SM",
-      "size": 68729,
-      "modified": "2026-01-17T06:06:43.268Z"
+      "size": 68713,
+      "modified": "2026-01-17T07:29:02.607Z"
     },
     {
       "name": "labor_efficiency_report_UC.html",
       "path": "report/UC/labor_efficiency_report_UC.html",
       "store": "UC",
-      "size": 77763,
-      "modified": "2026-01-17T06:06:33.118Z"
+      "size": 77750,
+      "modified": "2026-01-17T08:11:30.484Z"
     }
   ]
 }

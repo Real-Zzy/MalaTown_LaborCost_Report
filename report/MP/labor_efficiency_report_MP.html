@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>MP门店人工效率分析报告</title>
+    <title>MP门店2025年度人效分析报告</title>
     <style>
         body {
             font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
@@ -825,12 +825,11 @@
 <body>
     <div class="header">
         <a href="/index.html" class="back-button">← 返回主界面</a>
-        <h1>MP门店人工效率分析报告</h1>
+        <h1>MP门店2025年度人效分析报告</h1>
         <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <label for="startDate" style="font-size: 1.1em;">分析期间：</label>
             <select id="startDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择开始日期</option>
-                <option value="2024-12-30">2024年12月30日</option>
                 <option value="2025-01-13">2025年01月13日</option>
                 <option value="2025-01-27">2025年01月27日</option>
                 <option value="2025-02-10">2025年02月10日</option>
@@ -854,11 +853,12 @@
                 <option value="2025-10-20">2025年10月20日</option>
                 <option value="2025-11-03">2025年11月03日</option>
                 <option value="2025-11-17">2025年11月17日</option>
+                <option value="2025-12-01">2025年12月01日</option>
+                <option value="2025-12-15">2025年12月15日</option>
             </select>
             <span style="font-size: 1.1em;">至</span>
             <select id="endDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择结束日期</option>
-                <option value="2024-12-30">2024年12月30日</option>
                 <option value="2025-01-13">2025年01月13日</option>
                 <option value="2025-01-27">2025年01月27日</option>
                 <option value="2025-02-10">2025年02月10日</option>
@@ -882,49 +882,18 @@
                 <option value="2025-10-20">2025年10月20日</option>
                 <option value="2025-11-03">2025年11月03日</option>
                 <option value="2025-11-17">2025年11月17日</option>
+                <option value="2025-12-01">2025年12月01日</option>
+                <option value="2025-12-15">2025年12月15日</option>
             </select>
             <button id="confirmDateBtn" onclick="updateDateRange()" class="confirm-btn" style="margin-left: 10px;">确认</button>
-            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2024年12月30日 - 2025年11月17日</span>
+            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2025年01月13日 - 2025年12月15日</span>
         </div>
-        <p>报告生成时间：2026年01月14日</p>
+        <p>报告生成时间：2026年01月17日</p>
     </div>
     
     <!-- Embed all data as JSON for JavaScript filtering -->
     <script type="application/json" id="allData">
 [
-  {
-    "Period": "12/30-1/12",
-    "net_sales": 179656.91,
-    "Tips": 13882.75,
-    "service_fee": null,
-    "MP_Payroll": 41210.66,
-    "Tips_Distributed": 8401.15,
-    "if_match": -5481.6,
-    "MP_LaborCost": 32809.51,
-    "labor_cost/net_sales": 0.1826,
-    "total_Labor_hour": 1439.7,
-    "OT_hour": 269.44,
-    "SPLH": 124.78,
-    "HC": 27.0,
-    "Payroll_Dismissal": null,
-    "Payroll_OffCycle": 8181.54,
-    "Payroll_NonGusto": null,
-    "Payroll_Fixing": null,
-    "Payroll_NonRegularTotal": 8181.54,
-    "Other": null,
-    "MP_TotalLaborCostExcludingTips": 40991.05,
-    "TotalLaborCost/NetSells": 0.2281629468,
-    "Unnamed: 21": null,
-    "MP（Milpitas）": null,
-    "start_date": "2024-12-30T00:00:00",
-    "end_date": "2025-01-12T00:00:00",
-    "total_labor_cost": 40991.05,
-    "labor_cost_pct": 22.816294680789067,
-    "sales_per_labor_hour": 124.78774050149336,
-    "labor_cost_per_hour": 28.471938598319095,
-    "overtime_pct": 18.715010071542682,
-    "period_midpoint": "2025-01-05T12:00:00"
-  },
   {
     "Period": "1/13-1/26",
     "net_sales": 175801.1,
@@ -1683,6 +1652,72 @@
     "labor_cost_per_hour": 28.548825717525762,
     "overtime_pct": 27.988298262817953,
     "period_midpoint": "2025-11-23T12:00:00"
+  },
+  {
+    "Period": "12/1-12/14",
+    "net_sales": 205351.73,
+    "Tips": 15538.33,
+    "service_fee": null,
+    "MP_Payroll": 67766.41,
+    "Tips_Distributed": 15555.6,
+    "if_match": 17.27,
+    "MP_LaborCost": 52210.81,
+    "labor_cost/net_sales": 0.254250646,
+    "total_Labor_hour": 1938.86,
+    "OT_hour": 511.66,
+    "SPLH": 105.9136451,
+    "HC": 22.0,
+    "Payroll_Dismissal": null,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_NonRegularTotal": null,
+    "Other": null,
+    "MP_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSells": null,
+    "Unnamed: 21": null,
+    "MP（Milpitas）": null,
+    "start_date": "2025-12-01T00:00:00",
+    "end_date": "2025-12-14T00:00:00",
+    "total_labor_cost": 52210.81,
+    "labor_cost_pct": 25.425064595267834,
+    "sales_per_labor_hour": 105.91364513167532,
+    "labor_cost_per_hour": 26.928612689931196,
+    "overtime_pct": 26.389734173689693,
+    "period_midpoint": "2025-12-07T12:00:00"
+  },
+  {
+    "Period": "12/15-12/28",
+    "net_sales": 236058.63,
+    "Tips": 16543.36,
+    "service_fee": null,
+    "MP_Payroll": 67008.51,
+    "Tips_Distributed": 16088.94,
+    "if_match": -454.42,
+    "MP_LaborCost": 50919.57,
+    "labor_cost/net_sales": 0.2157073012,
+    "total_Labor_hour": 1884.4,
+    "OT_hour": 492.57,
+    "SPLH": 125.2699162,
+    "HC": 25.0,
+    "Payroll_Dismissal": 3990.3,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_NonRegularTotal": null,
+    "Other": null,
+    "MP_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSells": null,
+    "Unnamed: 21": null,
+    "MP（Milpitas）": null,
+    "start_date": "2025-12-15T00:00:00",
+    "end_date": "2025-12-28T00:00:00",
+    "total_labor_cost": 50919.57,
+    "labor_cost_pct": 21.570730119038647,
+    "sales_per_labor_hour": 125.26991615368287,
+    "labor_cost_per_hour": 27.02163553385693,
+    "overtime_pct": 26.13935470176183,
+    "period_midpoint": "2025-12-21T12:00:00"
   }
 ]
     </script>
@@ -1692,23 +1727,23 @@
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="label">总净销售额</div>
-                <div class="value">$4,361,897.55</div>
+                <div class="value">$4,623,651.00</div>
             </div>
             <div class="metric-card">
                 <div class="label">总人工成本</div>
-                <div class="value">$920,019.94</div>
+                <div class="value">$982,159.27</div>
             </div>
             <div class="metric-card">
                 <div class="label">平均人工成本占比</div>
-                <div class="value">21.09%</div>
+                <div class="value">21.24%</div>
             </div>
             <div class="metric-card">
                 <div class="label">总人工工时</div>
-                <div class="value">33,780.09</div>
+                <div class="value">36,163.65</div>
             </div>
             <div class="metric-card">
                 <div class="label">平均每小时销售额</div>
-                <div class="value">$130.45</div>
+                <div class="value">$129.49</div>
             </div>
         </div>
     </div>
@@ -1750,11 +1785,11 @@
             </tr>
             <tr>
                 <td>分析时间段数</td>
-                <td>24 个</td>
+                <td>25 个</td>
             </tr>
             <tr>
                 <td>平均人工成本占比</td>
-                <td>21.09%</td>
+                <td>21.21%</td>
             </tr>
             <tr>
                 <td>最低人工成本占比</td>
@@ -1766,11 +1801,11 @@
             </tr>
             <tr>
                 <td>标准差</td>
-                <td>3.23%</td>
+                <td>3.27%</td>
             </tr>
             <tr>
                 <td>平均每小时销售额 (SPLH)</td>
-                <td>$130.45</td>
+                <td>$129.49</td>
             </tr>
             <tr>
                 <td>最佳 SPLH</td>
@@ -1778,15 +1813,15 @@
             </tr>
             <tr>
                 <td>最差 SPLH</td>
-                <td>$111.74 (时间段: 11/17-11/30)</td>
+                <td>$105.91 (时间段: 12/1-12/14)</td>
             </tr>
             <tr>
                 <td>平均加班工时占比</td>
-                <td>13.93%</td>
+                <td>14.72%</td>
             </tr>
             <tr>
                 <td>总加班工时</td>
-                <td>4,825.95 小时</td>
+                <td>5,560.74 小时</td>
             </tr>
             <tr>
                 <td>平均员工数量</td>
@@ -1815,18 +1850,18 @@
             </thead>
             <tbody id="periodTableBody">
 
-            <tr data-period="11/17-11/30">
-                <td>11/17-11/30</td>
-                <td>$203,971.44</td>
-                <td>$52,112.17</td>
-                <td>25.55%</td>
-                <td>$111.74</td>
-                <td>1,825.37</td>
-                <td>510.89</td>
-                <td>27.99%</td>
-                <td>26</td>
-                <td style="color: #e74c3c; font-weight: bold;">+11.31%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+17.10%</td>
+            <tr data-period="12/15-12/28">
+                <td>12/15-12/28</td>
+                <td>$236,058.63</td>
+                <td>$50,919.57</td>
+                <td>21.57%</td>
+                <td>$125.27</td>
+                <td>1,884.40</td>
+                <td>492.57</td>
+                <td>26.14%</td>
+                <td>25</td>
+                <td style="color: #27ae60; font-weight: bold;">-3.73%</td>
+                <td style="color: #27ae60; font-weight: bold;">-2.47%</td>
             </tr>
 
             </tbody>

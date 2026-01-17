@@ -830,7 +830,6 @@
             <label for="startDate" style="font-size: 1.1em;">分析期间：</label>
             <select id="startDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择开始日期</option>
-                <option value="2024-12-22">2024年12月22日</option>
                 <option value="2025-01-05">2025年01月05日</option>
                 <option value="2025-01-06">2025年01月06日</option>
                 <option value="2025-01-20">2025年01月20日</option>
@@ -857,11 +856,11 @@
                 <option value="2025-11-10">2025年11月10日</option>
                 <option value="2025-11-24">2025年11月24日</option>
                 <option value="2025-12-08">2025年12月08日</option>
+                <option value="2025-12-22">2025年12月22日</option>
             </select>
             <span style="font-size: 1.1em;">至</span>
             <select id="endDate" style="padding: 8px 15px; font-size: 1em; border: 2px solid rgba(255,255,255,0.5); border-radius: 5px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">
                 <option value="">选择结束日期</option>
-                <option value="2024-12-22">2024年12月22日</option>
                 <option value="2025-01-05">2025年01月05日</option>
                 <option value="2025-01-06">2025年01月06日</option>
                 <option value="2025-01-20">2025年01月20日</option>
@@ -888,9 +887,10 @@
                 <option value="2025-11-10">2025年11月10日</option>
                 <option value="2025-11-24">2025年11月24日</option>
                 <option value="2025-12-08">2025年12月08日</option>
+                <option value="2025-12-22">2025年12月22日</option>
             </select>
             <button id="confirmDateBtn" onclick="updateDateRange()" class="confirm-btn" style="margin-left: 10px;">确认</button>
-            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2024年12月22日 - 2025年12月08日</span>
+            <span id="dateRangeDisplay" style="font-size: 1.1em; margin-left: 10px;">2025年01月05日 - 2025年12月22日</span>
         </div>
         <p>报告生成时间：2026年01月17日</p>
     </div>
@@ -898,42 +898,6 @@
     <!-- Embed all data as JSON for JavaScript filtering -->
     <script type="application/json" id="allData">
 [
-  {
-    "Period": "12/22-1/4",
-    "net_sales": 68965.74,
-    "Tips": 855.11,
-    "Total_Payroll": 29488.49,
-    "Tips_Distributed": 860.11,
-    "if_match": 5.0,
-    "CU_LaborCost_no_tips": 28628.38,
-    "labor_cost/net_sales": 0.4275817239,
-    "total_Labor_hour": 1014.87,
-    "OT_hour": 154.12,
-    "SPLH": 67.9552455,
-    "HC": 11.0,
-    "Payroll_Dismissal": 363.1,
-    "Payroll_OffCycle": null,
-    "Payroll_NonGusto": null,
-    "Payroll_Fixing": null,
-    "Payroll_Bonus": null,
-    "Payroll_NewHire": null,
-    "Payroll_NonRegularTotal": null,
-    "Other": null,
-    "JC_TotalLaborCostExcludingTips": null,
-    "TotalLaborCost/NetSales": null,
-    "Unnamed: 22": null,
-    "JC（Jersey City）": null,
-    "start_date": "2024-12-22T00:00:00",
-    "end_date": "2025-01-04T00:00:00",
-    "MP_LaborCost": 28628.38,
-    "MP_TotalLaborCostExcludingTips": null,
-    "total_labor_cost": 28628.38,
-    "labor_cost_pct": 41.51101691941535,
-    "sales_per_labor_hour": 67.95524549942358,
-    "labor_cost_per_hour": 28.208913456895957,
-    "overtime_pct": 15.186181481372,
-    "period_midpoint": "2024-12-28T12:00:00"
-  },
   {
     "Period": "1/5-1/18",
     "net_sales": null,
@@ -1869,6 +1833,42 @@
     "labor_cost_per_hour": 27.713433165718076,
     "overtime_pct": 17.119780442430603,
     "period_midpoint": "2025-12-14T12:00:00"
+  },
+  {
+    "Period": "12/22-1/4",
+    "net_sales": 68965.74,
+    "Tips": 855.11,
+    "Total_Payroll": 29488.49,
+    "Tips_Distributed": 860.11,
+    "if_match": 5.0,
+    "CU_LaborCost_no_tips": 28628.38,
+    "labor_cost/net_sales": 0.4275817239,
+    "total_Labor_hour": 1014.87,
+    "OT_hour": 154.12,
+    "SPLH": 67.9552455,
+    "HC": 11.0,
+    "Payroll_Dismissal": 363.1,
+    "Payroll_OffCycle": null,
+    "Payroll_NonGusto": null,
+    "Payroll_Fixing": null,
+    "Payroll_Bonus": null,
+    "Payroll_NewHire": null,
+    "Payroll_NonRegularTotal": null,
+    "Other": null,
+    "JC_TotalLaborCostExcludingTips": null,
+    "TotalLaborCost/NetSales": null,
+    "Unnamed: 22": null,
+    "JC（Jersey City）": null,
+    "start_date": "2025-12-22T00:00:00",
+    "end_date": "2026-01-04T00:00:00",
+    "MP_LaborCost": 28628.38,
+    "MP_TotalLaborCostExcludingTips": null,
+    "total_labor_cost": 28628.38,
+    "labor_cost_pct": 41.51101691941535,
+    "sales_per_labor_hour": 67.95524549942358,
+    "labor_cost_per_hour": 28.208913456895957,
+    "overtime_pct": 15.186181481372,
+    "period_midpoint": "2025-12-28T12:00:00"
   }
 ]
     </script>
@@ -2001,18 +2001,18 @@
             </thead>
             <tbody id="periodTableBody">
 
-            <tr data-period="12/08-12/21">
-                <td>12/08-12/21</td>
-                <td>$78,676.92</td>
-                <td>$30,091.80</td>
-                <td>38.25%</td>
-                <td>$72.46</td>
-                <td>1,085.82</td>
-                <td>185.89</td>
-                <td>17.12%</td>
-                <td>13</td>
-                <td style="color: #27ae60; font-weight: bold;">-0.22%</td>
-                <td style="color: #e74c3c; font-weight: bold;">+13.49%</td>
+            <tr data-period="12/22-1/4">
+                <td>12/22-1/4</td>
+                <td>$68,965.74</td>
+                <td>$28,628.38</td>
+                <td>41.51%</td>
+                <td>$67.96</td>
+                <td>1,014.87</td>
+                <td>154.12</td>
+                <td>15.19%</td>
+                <td>11</td>
+                <td style="color: #27ae60; font-weight: bold;">-17.09%</td>
+                <td style="color: #27ae60; font-weight: bold;">-4.86%</td>
             </tr>
 
             </tbody>
